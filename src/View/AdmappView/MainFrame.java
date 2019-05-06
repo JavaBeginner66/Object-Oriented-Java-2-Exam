@@ -30,4 +30,10 @@ public class MainFrame extends GridPane {
     public void addListeners(Engine engine){
 
     }
+
+    /* Get methods */
+
+    public Button getSaveData() {
+        return saveData;
+    }
 }
