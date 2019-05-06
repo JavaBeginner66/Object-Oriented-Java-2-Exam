@@ -73,6 +73,13 @@ public class RegisterMatchPanel extends HBox {
         }
     }
 
+    public void emptyFields(){
+        time.setText("");
+        day.setText("");
+        month.setText("");
+        year.setText("");
+    }
+
     public void addListeners(MainFrame mainFrame, Engine engine){
         RegisterMatchController listener = new RegisterMatchController(mainFrame);
         registerMatch.setOnAction(listener);
