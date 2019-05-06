@@ -1,6 +1,7 @@
 package Controller.AdmappController;
 
-import Model.ChessMatchDate;
+import Model.AdmappModel.ChessMatchInfo;
+import Model.AdmappModel.Interface.Engine;
 import View.AdmappView.MainFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,9 +13,11 @@ import java.io.ObjectOutputStream;
 public class RegisterMatchController implements EventHandler<ActionEvent> {
 
     private MainFrame mainFrame;
+    private Engine engine;
 
-    public RegisterMatchController(MainFrame mainFrame){
+    public RegisterMatchController(MainFrame mainFrame, Engine engine){
         this.mainFrame = mainFrame;
+        this.engine = engine;
     }
 
     /* Ligger bare en knapp i RegisterPlayerPanel, så slipper å sjekke*/
@@ -25,13 +28,14 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
 
     private void writeToFile(){
         ObjectOutputStream toFile;
-        String name = (String)mainFrame.getRegisterMatchPanel().getParticipant().getValue();
+        String name1 = (String)mainFrame.getRegisterMatchPanel().getParticipant1().getValue();
+        String name2 = (String)mainFrame.getRegisterMatchPanel().getParticipant2().getValue();
         String time = mainFrame.getRegisterMatchPanel().getTime().getText();
         String day = mainFrame.getRegisterMatchPanel().getDay().getText();
         String month = mainFrame.getRegisterMatchPanel().getMonth().getText();
         String year = mainFrame.getRegisterMatchPanel().getYear().getText();
 
-        ChessMatchDate matchDate = new ChessMatchDate(name, time, day, month, year);
+        ChessMatchInfo matchDate = new ChessMatchInfo(name1,name2, time, day, month, year);
 
         try {
             toFile = new ObjectOutputStream(new FileOutputStream("parti.dat",true));
@@ -41,6 +45,8 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
             e.printStackTrace();
         }finally {
             mainFrame.getRegisterMatchPanel().emptyFields();
+            /* Oppdater matchliste*/
+            engine.updateGUI();
         }
     }
 }

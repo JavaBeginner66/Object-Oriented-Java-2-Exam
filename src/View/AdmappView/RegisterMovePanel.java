@@ -21,6 +21,10 @@ public class RegisterMovePanel extends HBox {
         componentSetup();
     }
 
+    private void update(){
+
+    }
+
     private void componentSetup(){
         Label registerMoveLabel = new Label("Registrer Trekk");
         moveDescription = new TextField();

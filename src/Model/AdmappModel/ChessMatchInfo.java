@@ -1,19 +1,21 @@
-package Model;
+package Model.AdmappModel;
 
 import java.io.Serializable;
 
-public class ChessMatchDate implements Serializable {
+public class ChessMatchInfo implements Serializable {
 
     private static final long serialVersionUID = 4694861542429517006L;
 
-    private String name;
+    private String name1;
+    private String name2;
     private String time;
     private String day;
     private String month;
     private String year;
 
-    public ChessMatchDate(String name, String time, String day, String month, String year){
-        this.name = name;
+    public ChessMatchInfo(String name1, String name2, String time, String day, String month, String year){
+        this.name1 = name1;
+        this.name2 = name2;
         this.time = time;
         this.day = day;
         this.month = month;
@@ -22,8 +24,12 @@ public class ChessMatchDate implements Serializable {
 
     /* Get methods */
 
-    public String getName() {
-        return name;
+    public String getName1() {
+        return name1;
+    }
+
+    public String getName2() {
+        return name2;
     }
 
     public String getTime() {

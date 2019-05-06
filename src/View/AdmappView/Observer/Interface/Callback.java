@@ -8,6 +8,7 @@ package View.AdmappView.Observer.Interface;
 public interface Callback {
     /**
      * Oppdaterer komponenter/hva de inneholder i sin respektive klasse
+     * Blir oftest kalt fra controller-klassene
      */
     public void update();
 }

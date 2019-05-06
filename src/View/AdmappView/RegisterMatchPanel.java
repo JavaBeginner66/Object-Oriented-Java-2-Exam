@@ -11,7 +11,8 @@ import java.io.*;
 
 public class RegisterMatchPanel extends HBox {
 
-    private ComboBox<String> participant;
+    private ComboBox<String> participant1;
+    private ComboBox<String> participant2;
     private Button registerMatch;
     private TextField time;
     private TextField day;
@@ -25,19 +26,21 @@ public class RegisterMatchPanel extends HBox {
         this.setSpacing(10);
 
         componentSetup();
-        update();
+
     }
 
     private void componentSetup(){
         Label matchLabel = new Label("Registrer Sjakkparti");
-        participant = new ComboBox<String>();
+        participant1 = new ComboBox<String>();
+        participant2 = new ComboBox<String>();
         registerMatch = new Button("Registrer");
         time = new TextField();
         day = new TextField();
         month = new TextField();
         year = new TextField();
 
-        participant.setPromptText("Velg navn");
+        participant1.setPromptText("Velg navn");
+        participant2.setPromptText("Velg navn");
         time.setPromptText("Klokkeslett");
         day.setPromptText("Dag");
         month.setPromptText("Månde");
@@ -47,9 +50,10 @@ public class RegisterMatchPanel extends HBox {
         day.setMaxWidth(80);
         month.setMaxWidth(80);
         year.setMaxWidth(80);
-        participant.setMinWidth(130);
+        participant1.setMinWidth(130);
+        participant2.setMinWidth(130);
 
-        this.getChildren().addAll(matchLabel, participant, time, day, month, year, registerMatch);
+        this.getChildren().addAll(matchLabel, participant1,participant2, time, day, month, year, registerMatch);
     }
 
 
@@ -61,9 +65,12 @@ public class RegisterMatchPanel extends HBox {
         try{
             fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
             try{
-                participant.getItems().clear();
+                participant1.getItems().clear();
+                participant2.getItems().clear();
                 while(true){
-                    participant.getItems().addAll(fromFile.readUTF());
+                    String name = fromFile.readUTF();
+                    participant1.getItems().addAll(name);
+                    participant2.getItems().addAll(name);
                 }
             }catch(EOFException eof){
                 fromFile.close();
@@ -81,13 +88,16 @@ public class RegisterMatchPanel extends HBox {
     }
 
     public void addListeners(MainFrame mainFrame, Engine engine){
-        RegisterMatchController listener = new RegisterMatchController(mainFrame);
+        RegisterMatchController listener = new RegisterMatchController(mainFrame, engine);
         registerMatch.setOnAction(listener);
     }
     /* Get methods */
 
-    public ComboBox getParticipant() {
-        return participant;
+    public ComboBox getParticipant1() {
+        return participant1;
+    }
+    public ComboBox getParticipant2() {
+        return participant2;
     }
 
     public TextField getTime() {
