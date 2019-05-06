@@ -51,6 +51,10 @@ public class RegisterMatchPanel extends HBox {
 
     }
 
+    public void update(){
+        
+    }
+
     /* Get methods */
 
     public ComboBox getParticipant() {

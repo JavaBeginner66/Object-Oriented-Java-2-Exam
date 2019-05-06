@@ -10,4 +10,16 @@ public class EngineImpl implements Engine {
     public EngineImpl(CallbackGUI callbackGUI){
         this.callbackGUI = callbackGUI;
     }
+
+    @Override
+    public void updateGUI() {
+        callbackGUI.update();
+    }
+
+    /* Get methods */
+    public CallbackGUI getCallbackGUI() {
+        return callbackGUI;
+    }
+
+
 }

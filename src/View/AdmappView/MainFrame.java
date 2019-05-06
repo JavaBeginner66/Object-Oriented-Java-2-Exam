@@ -39,4 +39,20 @@ public class MainFrame extends GridPane {
     public Button getSaveData() {
         return saveData;
     }
+
+    public RegisterPlayerPanel getRegisterPlayerPanel() {
+        return registerPlayerPanel;
+    }
+
+    public RegisterMatchPanel getRegisterMatchPanel() {
+        return registerMatchPanel;
+    }
+
+    public ResultPanel getResultPanel() {
+        return resultPanel;
+    }
+
+    public RegisterMovePanel getRegisterMovePanel() {
+        return registerMovePanel;
+    }
 }

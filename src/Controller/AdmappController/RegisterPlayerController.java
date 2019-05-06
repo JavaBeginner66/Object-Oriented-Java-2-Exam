@@ -1,5 +1,7 @@
 package Controller.AdmappController;
 
+import Model.AdmappModel.Interface.Engine;
+import View.AdmappView.MainFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -13,8 +15,12 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
 
     private DataOutputStream toFile;
     private TextField registerName;
+    private MainFrame mainFrame;
+    private Engine engine;
 
-    public RegisterPlayerController(TextField registerName){
+    public RegisterPlayerController(MainFrame mainFrame, Engine engine, TextField registerName){
+        this.mainFrame = mainFrame;
+        this.engine = engine;
         this.registerName = registerName;
     }
 
@@ -38,6 +44,8 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
             }catch (IOException ex){
                 ex.printStackTrace();
             }
+            /* Oppdater navnliste*/
+            engine.updateGUI();
         }
     }
 }

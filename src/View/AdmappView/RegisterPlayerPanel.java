@@ -32,7 +32,7 @@ public class RegisterPlayerPanel extends HBox {
     }
 
     public void addListeners(MainFrame mainFrame, Engine engine){
-        RegisterPlayerController listener = new RegisterPlayerController(registerName);
+        RegisterPlayerController listener = new RegisterPlayerController(mainFrame, engine, registerName);
         register.setOnAction(listener);
     }
 
