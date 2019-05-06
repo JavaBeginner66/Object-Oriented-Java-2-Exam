@@ -59,10 +59,20 @@ public class RegisterMatchPanel extends HBox {
         DataInputStream fromFile;
         DataOutputStream toFile;
 
-        try {
-            DataInputStream fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
-        }catch (IOException e){
-            e.printStackTrace();
+        try{
+            fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
+            toFile = new DataOutputStream(new FileOutputStream("parti.dat"));
+            try{
+                participant.getItems().clear();
+                while(true){
+                    participant.getItems().addAll(fromFile.readUTF());
+                }
+            }catch(EOFException eof){
+                fromFile.close();
+                toFile.close();
+            }
+        }catch (IOException io){
+            io.printStackTrace();
         }
     }
 
