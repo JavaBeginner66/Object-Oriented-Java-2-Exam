@@ -1,5 +1,6 @@
 package View.AdmappView;
 
+import Controller.AdmappController.RegisterMatchController;
 import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -24,6 +25,7 @@ public class RegisterMatchPanel extends HBox {
         this.setSpacing(10);
 
         componentSetup();
+        update();
     }
 
     private void componentSetup(){
@@ -50,18 +52,14 @@ public class RegisterMatchPanel extends HBox {
         this.getChildren().addAll(matchLabel, participant, time, day, month, year, registerMatch);
     }
 
-    public void addListeners(MainFrame mainFrame, Engine engine){
 
-    }
 
     public void update() {
 
         DataInputStream fromFile;
-        DataOutputStream toFile;
 
         try{
             fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
-            toFile = new DataOutputStream(new FileOutputStream("parti.dat"));
             try{
                 participant.getItems().clear();
                 while(true){
@@ -69,13 +67,16 @@ public class RegisterMatchPanel extends HBox {
                 }
             }catch(EOFException eof){
                 fromFile.close();
-                toFile.close();
             }
         }catch (IOException io){
             io.printStackTrace();
         }
     }
 
+    public void addListeners(MainFrame mainFrame, Engine engine){
+        RegisterMatchController listener = new RegisterMatchController(mainFrame);
+        registerMatch.setOnAction(listener);
+    }
     /* Get methods */
 
     public ComboBox getParticipant() {
