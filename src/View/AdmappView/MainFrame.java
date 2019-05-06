@@ -28,7 +28,10 @@ public class MainFrame extends GridPane {
     }
 
     public void addListeners(Engine engine){
-
+        registerPlayerPanel.addListeners(this, engine);
+        registerMatchPanel.addListeners(this, engine);
+        registerMovePanel.addListeners(this, engine);
+        resultPanel.addListeners(this, engine);
     }
 
     /* Get methods */

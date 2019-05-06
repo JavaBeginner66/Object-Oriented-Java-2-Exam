@@ -1,5 +1,6 @@
 package View.AdmappView;
 
+import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -31,6 +32,10 @@ public class RegisterMovePanel extends HBox {
         moveComment.getItems().addAll("!!", "!", "!?", "?!", "?", "??");
 
         this.getChildren().addAll(registerMoveLabel, moveDescription, moveComment);
+
+    }
+
+    public void addListeners(MainFrame mainFrame, Engine engine){
 
     }
 

@@ -1,5 +1,7 @@
 package View.AdmappView;
 
+import Controller.AdmappController.RegisterPlayerController;
+import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,6 +30,12 @@ public class RegisterPlayerPanel extends HBox {
 
         this.getChildren().addAll(nameLabel, registerName, register);
     }
+
+    public void addListeners(MainFrame mainFrame, Engine engine){
+        RegisterPlayerController listener = new RegisterPlayerController(registerName);
+        register.setOnAction(listener);
+    }
+
 
     /* Get methods */
 

@@ -1,5 +1,6 @@
 package View.AdmappView;
 
+import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -44,6 +45,10 @@ public class RegisterMatchPanel extends HBox {
         year.setMaxWidth(80);
 
         this.getChildren().addAll(matchLabel, participant, time, day, month, year);
+    }
+
+    public void addListeners(MainFrame mainFrame, Engine engine){
+
     }
 
     /* Get methods */

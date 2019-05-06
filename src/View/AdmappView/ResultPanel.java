@@ -1,5 +1,6 @@
 package View.AdmappView;
 
+import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,5 +30,19 @@ public class ResultPanel extends HBox {
         resultBox.setPromptText("Vinn, Tap, Remi?");
 
         this.getChildren().addAll(resultLabel, chooseMatch, resultBox);
+    }
+
+    public void addListeners(MainFrame mainFrame, Engine engine){
+
+    }
+
+    /* Get methods */
+
+    public ComboBox getChooseMatch() {
+        return chooseMatch;
+    }
+
+    public TextField getResultBox() {
+        return resultBox;
     }
 }
