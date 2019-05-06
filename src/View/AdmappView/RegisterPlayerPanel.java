@@ -1,9 +1,12 @@
 package View.AdmappView;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-import java.awt.*;
+
 
 public class RegisterPlayerPanel extends HBox {
 
@@ -20,5 +23,9 @@ public class RegisterPlayerPanel extends HBox {
 
     private void componentSetup(){
         Label nameLabel = new Label("Navn");
+        registerName = new TextField();
+        register = new Button("Registrer");
+
+        this.getChildren().addAll(nameLabel, registerName, register);
     }
 }
