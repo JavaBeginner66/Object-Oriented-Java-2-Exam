@@ -2,15 +2,21 @@ package View.AdmappView;
 
 import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 
 public class RegisterMatchPanel extends HBox {
 
     private ComboBox participant;
+    private Button registerMatch;
     private TextField time;
     private TextField day;
     private TextField month;
@@ -28,6 +34,7 @@ public class RegisterMatchPanel extends HBox {
     private void componentSetup(){
         Label matchLabel = new Label("Registrer Sjakkparti");
         participant = new ComboBox();
+        registerMatch = new Button("Registrer");
         time = new TextField();
         day = new TextField();
         month = new TextField();
@@ -44,7 +51,7 @@ public class RegisterMatchPanel extends HBox {
         month.setMaxWidth(80);
         year.setMaxWidth(80);
 
-        this.getChildren().addAll(matchLabel, participant, time, day, month, year);
+        this.getChildren().addAll(matchLabel, participant, time, day, month, year, registerMatch);
     }
 
     public void addListeners(MainFrame mainFrame, Engine engine){
@@ -52,7 +59,11 @@ public class RegisterMatchPanel extends HBox {
     }
 
     public void update(){
-        
+        try {
+            DataInputStream fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /* Get methods */
@@ -76,4 +87,6 @@ public class RegisterMatchPanel extends HBox {
     public TextField getYear() {
         return year;
     }
+
+
 }
