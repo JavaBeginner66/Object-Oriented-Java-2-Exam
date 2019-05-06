@@ -2,20 +2,15 @@ package View.AdmappView;
 
 import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
 
 public class RegisterMatchPanel extends HBox {
 
-    private ComboBox participant;
+    private ComboBox<String> participant;
     private Button registerMatch;
     private TextField time;
     private TextField day;
@@ -33,7 +28,7 @@ public class RegisterMatchPanel extends HBox {
 
     private void componentSetup(){
         Label matchLabel = new Label("Registrer Sjakkparti");
-        participant = new ComboBox();
+        participant = new ComboBox<String>();
         registerMatch = new Button("Registrer");
         time = new TextField();
         day = new TextField();
@@ -50,6 +45,7 @@ public class RegisterMatchPanel extends HBox {
         day.setMaxWidth(80);
         month.setMaxWidth(80);
         year.setMaxWidth(80);
+        participant.setMinWidth(130);
 
         this.getChildren().addAll(matchLabel, participant, time, day, month, year, registerMatch);
     }
@@ -58,11 +54,35 @@ public class RegisterMatchPanel extends HBox {
 
     }
 
-    public void update(){
+    public void update() {
+
+        DataInputStream fromFile;
+        DataOutputStream toFile;
+
         try {
-            DataInputStream fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
-        }catch (IOException e){
-            e.printStackTrace();
+            fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
+            toFile = new DataOutputStream(new FileOutputStream("parti.dat"));
+            try {
+                participant.getItems().clear();
+                while (true) {
+                    participant.getItems().addAll(fromFile.readUTF());
+                }
+            } catch (EOFException eof) {
+                fromFile.close();
+            }
+            /*
+            try {
+                while (true) {
+
+                }
+
+            } catch (EOFException eof2) {
+                eof2.printStackTrace();
+            }
+            */
+        } catch (IOException io) {
+            io.printStackTrace();
+
         }
     }
 
