@@ -11,6 +11,8 @@ import java.io.*;
 
 public class RegisterMatchPanel extends HBox {
 
+    public final static File matchFile = new File("parti");
+
     private ComboBox<String> participant1;
     private ComboBox<String> participant2;
     private Button registerMatch;
@@ -63,7 +65,7 @@ public class RegisterMatchPanel extends HBox {
         DataInputStream fromFile;
 
         try{
-            fromFile = new DataInputStream(new FileInputStream("deltakere"));
+            fromFile = new DataInputStream(new FileInputStream(RegisterPlayerPanel.playerFile));
             try{
                 participant1.getItems().clear();
                 participant2.getItems().clear();

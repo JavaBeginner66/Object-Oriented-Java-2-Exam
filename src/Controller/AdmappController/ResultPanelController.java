@@ -1,14 +1,14 @@
 package Controller.AdmappController;
 
 import Model.AdmappModel.ChessMatchInfo;
+import Model.AdmappModel.MatchResult;
 import View.AdmappView.MainFrame;
+import View.AdmappView.RegisterMatchPanel;
+import View.AdmappView.ResultPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 
 public class ResultPanelController implements EventHandler<ActionEvent> {
 
@@ -20,9 +20,25 @@ public class ResultPanelController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        writeFromFile();
+        writeToFile();
     }
 
-    private void writeFromFile() {
+    private void writeToFile() {
+        ObjectOutputStream toFile;
+        MatchResult result = new MatchResult((ChessMatchInfo)mainFrame.getResultPanel().getChooseMatch().getValue(),
+                                             (String)mainFrame.getResultPanel().getResultBox().getValue());
+
+        try {
+            toFile = new ObjectOutputStream(new FileOutputStream(ResultPanel.resultFile, true));
+            toFile.writeObject(result);
+            toFile.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            //mainFrame.getRegisterMatchPanel().emptyFields();
+            /* Oppdater matchliste*/
+            //mainFrame.getRegiserMovePanel;
+        }
     }
 }

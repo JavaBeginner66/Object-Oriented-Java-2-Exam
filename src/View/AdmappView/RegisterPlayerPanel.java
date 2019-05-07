@@ -8,9 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
 
 
 public class RegisterPlayerPanel extends HBox {
+
+    public final static File playerFile = new File("deltakere");
 
     private TextField registerName;
     private Button register;

@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class ChessMatchInfo implements Serializable {
 
-    private static final long serialVersionUID = 4694861842429517006L;
 
+    private static final long serialVersionUID = 8826742197789860668L;
     private String name1;
     private String name2;
     private String time;
@@ -46,5 +46,10 @@ public class ChessMatchInfo implements Serializable {
 
     public String getYear() {
         return year;
+    }
+
+    @Override
+    public String toString() {
+        return name1 + " mot " + name2 + " kl: " + time + " Dato: " + day + "/" + month + "/" + year;
     }
 }

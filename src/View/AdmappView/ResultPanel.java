@@ -7,7 +7,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 import java.io.*;
@@ -15,7 +14,7 @@ import java.io.*;
 
 public class ResultPanel extends HBox {
 
-    public final static File match = new File("parti");
+    public final static File resultFile = new File("result");
 
     private Button register;
     private ComboBox<ChessMatchInfo> chooseMatch;
@@ -31,16 +30,16 @@ public class ResultPanel extends HBox {
 
     public void update(){
 
-        if(match.exists()) {
+        if(RegisterMatchPanel.matchFile.exists()) {
             try {
-                FileInputStream f = new FileInputStream(match);
+                FileInputStream f = new FileInputStream(RegisterMatchPanel.matchFile);
                 try {
                     ChessMatchInfo matchInfo;
                     chooseMatch.getItems().clear();
                     for (; ;) {
                         ObjectInputStream fromFile = new ObjectInputStream(f);
-                        System.out.println(fromFile.readObject());
-                        //chooseMatch.getItems().addAll(matchInfo);
+                        matchInfo = (ChessMatchInfo)fromFile.readObject();
+                        chooseMatch.getItems().addAll(matchInfo);
                         }
                     }catch (ClassNotFoundException c){
                         c.printStackTrace();
@@ -52,7 +51,7 @@ public class ResultPanel extends HBox {
             }
         }else{
             try {
-                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(match, true));
+                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMatchPanel.matchFile, true));
                 createNewFile.close();
             } catch (IOException e) {
                 e.printStackTrace();

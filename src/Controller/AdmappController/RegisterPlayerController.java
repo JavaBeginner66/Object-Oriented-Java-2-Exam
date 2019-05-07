@@ -2,6 +2,7 @@ package Controller.AdmappController;
 
 import Model.AdmappModel.Interface.Engine;
 import View.AdmappView.MainFrame;
+import View.AdmappView.RegisterPlayerPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -33,7 +34,7 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
     private void writeToFile(){
 
         try {
-            toFile = new DataOutputStream(new FileOutputStream("deltakere", true));
+            toFile = new DataOutputStream(new FileOutputStream(RegisterPlayerPanel.playerFile, true));
             toFile.writeUTF(registerName.getText());
             registerName.setText("");
         }catch (IOException e){

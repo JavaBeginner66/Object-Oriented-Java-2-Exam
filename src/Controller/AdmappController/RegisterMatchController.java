@@ -3,6 +3,7 @@ package Controller.AdmappController;
 import Model.AdmappModel.ChessMatchInfo;
 import Model.AdmappModel.Interface.Engine;
 import View.AdmappView.MainFrame;
+import View.AdmappView.RegisterMatchPanel;
 import View.AdmappView.ResultPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,7 +40,7 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
         ChessMatchInfo matchDate = new ChessMatchInfo(name1,name2, time, day, month, year);
 
         try {
-            toFile = new ObjectOutputStream(new FileOutputStream(ResultPanel.match, true));
+            toFile = new ObjectOutputStream(new FileOutputStream(RegisterMatchPanel.matchFile, true));
             toFile.writeObject(matchDate);
             toFile.close();
 
@@ -48,7 +49,7 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
         }finally {
             mainFrame.getRegisterMatchPanel().emptyFields();
             /* Oppdater matchliste*/
-            engine.updateGUI();
+            mainFrame.getResultPanel().update();
         }
     }
 }
