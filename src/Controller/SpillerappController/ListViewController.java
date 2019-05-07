@@ -21,11 +21,10 @@ public class ListViewController implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         mainFrame.getDisplayPanel().getMovesDescription().clear();
-        for(int i = 0; i<10; i++){
-            FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
-            TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
+        FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
+        TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
+        for(int i = 1; i<moves.size(); i++){
             mainFrame.getDisplayPanel().getMovesDescription().appendText(i + ": " + moves.get(i) +  "\n");
         }
-
     }
 }

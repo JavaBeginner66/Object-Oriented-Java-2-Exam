@@ -45,10 +45,9 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
 
     /**
      * Lager først et objekt som tar imot hvilket trekk som er tatt + kommentaren,
-     * og setter objektet inn i et TreeMap med trekket som nøkkel.
+     * og setter objektet inn i et TreeMap med countMapItems som nøkkel for sortering.
      */
     private void saveMoveToMap(){
-
         moves.put(countMapItems,
                   new MoveDescriptionObject(
                           mainFrame.getRegisterMovePanel().getMoveDescription().getText(),
@@ -64,6 +63,7 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
         */
       countMapItems++;
         /* Disable Comboboksen for å ''locke'' inn til objektet*/
+        mainFrame.getRegisterMovePanel().emptyFields();
         mainFrame.getRegisterMovePanel().getMatchResult().setDisable(true);
     }
 
