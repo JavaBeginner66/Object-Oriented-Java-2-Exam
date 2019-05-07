@@ -24,7 +24,7 @@ public class NavigationPanel extends HBox {
         previous = new Button("Forje");
         next = new Button("Neste");
 
-        this.getChildren().addAll(autoMove, previous, next);
+        this.getChildren().addAll(previous, autoMove, next);
     }
     /* Get methods */
 
