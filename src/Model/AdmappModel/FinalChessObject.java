@@ -19,4 +19,14 @@ public class FinalChessObject implements Serializable {
     public String toString() {
         return matchResult + " \n " + moves;
     }
+
+    /* Get methods */
+
+    public MatchResult getMatchResult() {
+        return matchResult;
+    }
+
+    public TreeMap<String, MoveDescriptionObject> getMoves() {
+        return moves;
+    }
 }

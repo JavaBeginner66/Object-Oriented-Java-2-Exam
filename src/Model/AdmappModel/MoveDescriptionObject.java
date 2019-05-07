@@ -18,4 +18,14 @@ public class MoveDescriptionObject implements Serializable {
     public String toString() {
         return "Move: " + move + " Comment: " + moveComment;
     }
+
+    /* Get methods */
+
+    public String getMove() {
+        return move;
+    }
+
+    public String getMoveComment() {
+        return moveComment;
+    }
 }

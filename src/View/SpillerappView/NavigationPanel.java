@@ -1,5 +1,6 @@
 package View.SpillerappView;
 
+import Model.SpillerappModel.Interface.GameEngine;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -26,6 +27,11 @@ public class NavigationPanel extends HBox {
 
         this.getChildren().addAll(previous, autoMove, next);
     }
+
+    public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
+
+    }
+
     /* Get methods */
 
     public Button getAutoMove() {

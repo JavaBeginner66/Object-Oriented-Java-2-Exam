@@ -17,4 +17,13 @@ public class MatchResult implements Serializable {
     public String toString() {
         return matchInfo + " Resultat: " + result;
     }
+
+    /* Get methods */
+    public ChessMatchInfo getMatchInfo() {
+        return matchInfo;
+    }
+
+    public String getResult() {
+        return result;
+    }
 }

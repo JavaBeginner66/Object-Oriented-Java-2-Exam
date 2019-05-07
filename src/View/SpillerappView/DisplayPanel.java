@@ -1,5 +1,7 @@
 package View.SpillerappView;
 
+import Controller.SpillerappController.DisplayPanelController;
+import Model.SpillerappModel.Interface.GameEngine;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -27,7 +29,7 @@ public class DisplayPanel extends VBox {
 
         rank = new Button("Rankering");
         searchField.add(searchArea = new TextField(), 0,0);
-        searchField.add(search = new Button("Søk"), 1,0);
+        searchField.add(search = new Button("Søk etter parti"), 1,0);
         matches = new ListView();
         movesDescription = new TextArea();
         ScrollPane matchesView = new ScrollPane(matches);
@@ -39,5 +41,33 @@ public class DisplayPanel extends VBox {
 
 
         this.getChildren().addAll(rank, searchField, matchesView, movesView );
+    }
+
+    public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
+        DisplayPanelController listener = new DisplayPanelController(mainFrame, gameEngine);
+        rank.setOnAction(listener);
+        search.setOnAction(listener);
+    }
+
+    /* Get methods */
+
+    public Button getRank() {
+        return rank;
+    }
+
+    public TextField getSearchArea() {
+        return searchArea;
+    }
+
+    public Button getSearch() {
+        return search;
+    }
+
+    public ListView getMatches() {
+        return matches;
+    }
+
+    public TextArea getMovesDescription() {
+        return movesDescription;
     }
 }
