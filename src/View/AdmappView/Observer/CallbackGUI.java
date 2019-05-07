@@ -9,12 +9,16 @@ public class CallbackGUI implements Callback {
 
     public CallbackGUI(MainFrame mainFrame){
         this.mainFrame = mainFrame;
+        //update();
     }
 
     @Override
     public void update() {
         mainFrame.getRegisterMatchPanel().update();
-        //mainFrame.getResultPanel().update();
+        /*
+        mainFrame.getResultPanel().update();
+        mainFrame.getRegisterMovePanel().update();
+        */
 
     }
 }

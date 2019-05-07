@@ -38,7 +38,7 @@ public class ResultPanel extends VBox {
                     chooseMatch.getItems().clear();
                     for (; ;) {
                         ObjectInputStream fromFile = new ObjectInputStream(f);
-                        matchInfo = (ChessMatchInfo)fromFile.readObject();
+                        matchInfo = (ChessMatchInfo) fromFile.readObject();
                         chooseMatch.getItems().addAll(matchInfo);
                         }
                     }catch (ClassNotFoundException c){
