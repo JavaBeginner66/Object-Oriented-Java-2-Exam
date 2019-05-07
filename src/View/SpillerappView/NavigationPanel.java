@@ -1,5 +1,6 @@
 package View.SpillerappView;
 
+import Controller.SpillerappController.NavigationPanelController;
 import Model.SpillerappModel.Interface.GameEngine;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -28,7 +29,10 @@ public class NavigationPanel extends HBox {
     }
 
     public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
-
+        NavigationPanelController listener = new NavigationPanelController(mainFrame);
+        autoMove.setOnAction(listener);
+        previous.setOnAction(listener);
+        next.setOnAction(listener);
     }
 
     /* Get methods */
