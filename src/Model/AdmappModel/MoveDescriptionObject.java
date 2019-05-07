@@ -16,7 +16,7 @@ public class MoveDescriptionObject implements Serializable {
 
     @Override
     public String toString() {
-        return "Move: " + move + " Comment: " + moveComment;
+        return "Trekk: " + move + " Kommentar: " + moveComment;
     }
 
     /* Get methods */

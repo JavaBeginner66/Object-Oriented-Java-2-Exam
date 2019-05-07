@@ -32,7 +32,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         Button b = (Button) event.getSource();
         String s = b.getText();
         switch(s){
-            case "Rankering":
+            case "Rangering":
                 listRanks();
                 break;
             case "Søk etter person":
@@ -49,7 +49,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         Scene rankScene = new Scene(ranksWindow, 300, 500);
 
         Stage newWindow = new Stage();
-        newWindow.setTitle("Rankeringer");
+        newWindow.setTitle("Rangering");
         newWindow.setScene(rankScene);
 
         //writeRanksFromFile(ranksWindow);
@@ -86,7 +86,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     }
 
     private void listMatches(){
-        System.out.print("Yo");
         String name = mainFrame.getDisplayPanel().getSearchArea().getText();
 
         if(RegisterMovePanel.matchOverview.exists()) {
@@ -102,7 +101,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                         if(name.equals(chessObject.getMatchResult().getMatchInfo().getName1()) ||
                             name.equals(chessObject.getMatchResult().getMatchInfo().getName2())){
                             mainFrame.getDisplayPanel().getMatches().getItems().addAll(chessObject);
-                            //window.getChildren().addAll(chessObject.getMatchResult().getMatchInfo().ge);
                         }
                     }
                 }catch (ClassNotFoundException c){

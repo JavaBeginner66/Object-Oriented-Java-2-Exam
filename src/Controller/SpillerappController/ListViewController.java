@@ -1,9 +1,14 @@
 package Controller.SpillerappController;
 
+import Model.AdmappModel.FinalChessObject;
+import Model.AdmappModel.MoveDescriptionObject;
 import View.SpillerappView.MainFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+
+import java.util.Collections;
+import java.util.TreeMap;
 
 public class ListViewController implements EventHandler<MouseEvent> {
 
@@ -15,6 +20,11 @@ public class ListViewController implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        System.out.print(mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem());
+        mainFrame.getDisplayPanel().getMovesDescription().clear();
+        FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
+        TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
+        for(int i = 1; i<moves.size(); i++){
+            mainFrame.getDisplayPanel().getMovesDescription().appendText(i + ": " + moves.get(i) +  "\n");
+        }
     }
 }
