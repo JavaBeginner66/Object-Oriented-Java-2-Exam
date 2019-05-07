@@ -21,7 +21,7 @@ public class Spillerapp extends Application {
         mainFrame.addListeners(gameEngine);
 
 
-        Scene scene = new Scene(mainFrame, 1200, 700);
+        Scene scene = new Scene(mainFrame, 1070, 700);
         stage.setTitle("Spillerapp");
         stage.setScene(scene);
         stage.show();
