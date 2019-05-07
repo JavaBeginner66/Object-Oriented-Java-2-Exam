@@ -21,8 +21,9 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
 
     private MainFrame mainFrame;
 
-    private TreeMap<String, MoveDescriptionObject> moves = new TreeMap<>();
+    private TreeMap<Integer, MoveDescriptionObject> moves = new TreeMap<>();
 
+    private int countMapItems = 1;
 
     public RegisterMovePanelController(MainFrame mainFrame){
         this.mainFrame = mainFrame;
@@ -48,23 +49,26 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
      */
     private void saveMoveToMap(){
 
-        moves.put(mainFrame.getRegisterMovePanel().getMoveDescription().getText(),
+        moves.put(countMapItems,
                   new MoveDescriptionObject(
                           mainFrame.getRegisterMovePanel().getMoveDescription().getText(),
                           (String)mainFrame.getRegisterMovePanel().getMoveComment().getValue()
                   ));
 
+        /*
         Set keys = moves.keySet();
         for (Iterator i = keys.iterator(); i.hasNext();) {
             String s = (String) i.next();
             System.out.print(moves.get(s));
         }
-
+        */
+      countMapItems++;
         /* Disable Comboboksen for å ''locke'' inn til objektet*/
         mainFrame.getRegisterMovePanel().getMatchResult().setDisable(true);
     }
 
     private void saveMatchObjectToFile(){
+        countMapItems = 1;
         ObjectOutputStream toFile;
         FinalChessObject chessObject = new FinalChessObject((MatchResult)mainFrame.getRegisterMovePanel().getMatchResult().getValue(), moves);
         try {
