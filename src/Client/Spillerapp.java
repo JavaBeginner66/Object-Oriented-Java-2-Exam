@@ -22,6 +22,7 @@ public class Spillerapp extends Application {
 
 
         Scene scene = new Scene(mainFrame, 1030, 700);
+        scene.getStylesheets().add("CSS/Spillerapp.css");
         stage.setTitle("Spillerapp");
         stage.setScene(scene);
         stage.show();

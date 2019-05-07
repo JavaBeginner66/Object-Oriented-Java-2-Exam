@@ -13,8 +13,7 @@ public class NavigationPanel extends HBox {
 
 
     public NavigationPanel(){
-        this.setStyle("-fx-background-color: #c4c4c4;");
-        this.setPadding(new Insets(10,10,10,580));
+        this.getStyleClass().add("navPanel");
         this.setSpacing(30);
 
         componentSetup();

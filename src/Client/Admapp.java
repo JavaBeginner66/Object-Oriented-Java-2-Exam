@@ -22,7 +22,7 @@ public class Admapp extends Application {
 
 
         Scene scene = new Scene(mainFrame, 950, 370);
-        scene.getStylesheets().add("CSS/style.css");
+        scene.getStylesheets().add("CSS/Admapp.css");
         stage.setTitle("Admapp");
         stage.setScene(scene);
         stage.show();
