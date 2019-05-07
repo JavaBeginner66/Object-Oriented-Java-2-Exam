@@ -35,6 +35,13 @@ public class CreateBoard {
             }
             colorCount++;
         }
+        addBoardPieces();
+    }
+
+    private void addBoardPieces(){
+        for(int i = 0; i<16; i++){
+
+        }
     }
 
     public ArrayList<ChessCell> getChessCells() {
