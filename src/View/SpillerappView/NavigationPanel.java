@@ -22,7 +22,7 @@ public class NavigationPanel extends HBox {
 
     private void componentSetup(){
         autoMove = new Button("Auto");
-        previous = new Button("Forje");
+        previous = new Button("Forrige");
         next = new Button("Neste");
 
         this.getChildren().addAll(previous, autoMove, next);

@@ -26,8 +26,7 @@ public class RegisterMovePanel extends HBox {
     private ComboBox<MatchResult> matchResult;
 
     public RegisterMovePanel(){
-        this.setStyle("-fx-background-color: #c4c4c4;");
-        this.setPadding(new Insets(10,10,10,10));
+        this.getStyleClass().add("panel");
         this.setSpacing(10);
 
         componentSetup();

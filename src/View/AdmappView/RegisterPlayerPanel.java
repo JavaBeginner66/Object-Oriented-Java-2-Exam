@@ -19,8 +19,7 @@ public class RegisterPlayerPanel extends HBox {
     private Button register;
 
     public RegisterPlayerPanel(){
-        this.setStyle("-fx-background-color: #c4c4c4;");
-        this.setPadding(new Insets(10,10,10,10));
+        this.getStyleClass().add("panel");
         this.setSpacing(10);
 
         componentSetup();

@@ -21,8 +21,7 @@ public class ResultPanel extends HBox {
     private ComboBox<String> resultBox;
 
     public ResultPanel(){
-        this.setStyle("-fx-background-color: #c4c4c4;");
-        this.setPadding(new Insets(10,10,10,10));
+        this.getStyleClass().add("panel");
         this.setSpacing(10);
 
         componentSetup();
