@@ -7,11 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.File;
 
 
-public class RegisterPlayerPanel extends HBox {
+public class RegisterPlayerPanel extends VBox {
 
     public final static File playerFile = new File("deltakere");
 
@@ -29,6 +30,9 @@ public class RegisterPlayerPanel extends HBox {
         Label nameLabel = new Label("Navn");
         registerName = new TextField();
         register = new Button("Registrer");
+
+        nameLabel.setMinWidth(200);
+        registerName.setMinWidth(200);
 
         this.getChildren().addAll(nameLabel, registerName, register);
     }

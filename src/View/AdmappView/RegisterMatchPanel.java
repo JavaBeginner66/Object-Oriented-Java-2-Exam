@@ -5,11 +5,12 @@ import Model.AdmappModel.Interface.Engine;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.*;
 
 
-public class RegisterMatchPanel extends HBox {
+public class RegisterMatchPanel extends VBox {
 
     public final static File matchFile = new File("parti");
 
@@ -45,14 +46,15 @@ public class RegisterMatchPanel extends HBox {
         time.setPromptText("Klokkeslett");
         day.setPromptText("Dag");
         month.setPromptText("Måned");
-        year.setPromptText("år");
+        year.setPromptText("År");
 
-        time.setMaxWidth(90);
-        day.setMaxWidth(90);
-        month.setMaxWidth(90);
-        year.setMaxWidth(90);
-        participant1.setMinWidth(150);
-        participant2.setMinWidth(150);
+        matchLabel.setMinWidth(200);
+        participant1.setMinWidth(200);
+        participant2.setMinWidth(200);
+        time.setMaxWidth(200);
+        day.setMaxWidth(200);
+        month.setMaxWidth(200);
+        year.setMaxWidth(200);
 
         this.getChildren().addAll(matchLabel, participant1,participant2, time, day, month, year, registerMatch);
     }

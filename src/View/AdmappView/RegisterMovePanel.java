@@ -9,11 +9,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.*;
 
 
-public class RegisterMovePanel extends HBox {
+public class RegisterMovePanel extends VBox {
 
     public final static File resultFile = new File("resultat");
     public final static File matchOverview = new File("oversikt");
@@ -79,7 +80,12 @@ public class RegisterMovePanel extends HBox {
         moveDescription.setPromptText("Trekk");
         moveComment.setPromptText("Beskrivelse");
         matchResult.setPromptText("Velg parti");
-        matchResult.setMinWidth(300);
+
+        registerMoveLabel.setMinWidth(200);
+        matchResult.setMinWidth(200);
+        moveDescription.setMinWidth(200);
+        moveComment.setMinWidth(200);
+        matchResult.setMinWidth(200);
 
         moveComment.getItems().addAll("!!", "!", "!?", "?!", "?", "??");
 

@@ -8,11 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.*;
 
 
-public class ResultPanel extends HBox {
+public class ResultPanel extends VBox {
 
     public final static File resultFile = new File("result");
 
@@ -68,7 +69,11 @@ public class ResultPanel extends HBox {
         chooseMatch.setPromptText("Velg Parti");
         resultBox.setPromptText("Resultat");
         resultBox.getItems().addAll("1-0", "0-1", "1/2-1/2");
-        chooseMatch.setMinWidth(300);
+
+        resultLabel.setMinWidth(200);
+        chooseMatch.setMinWidth(200);
+        resultBox.setMinWidth(200);
+        chooseMatch.setMinWidth(200);
 
         this.getChildren().addAll(resultLabel, chooseMatch, resultBox, register);
     }

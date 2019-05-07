@@ -15,12 +15,12 @@ public class MainFrame extends GridPane {
 
     public MainFrame(){
         this.setPadding(new Insets(10));
-        this.setVgap(10);
+        this.setHgap(10);
 
         this.add(registerPlayerPanel = new RegisterPlayerPanel(), 0,0);
-        this.add(registerMatchPanel = new RegisterMatchPanel(), 0,1);
-        this.add(resultPanel = new ResultPanel(), 0,2);
-        this.add(registerMovePanel = new RegisterMovePanel(), 0,3);
+        this.add(registerMatchPanel = new RegisterMatchPanel(), 1,0);
+        this.add(resultPanel = new ResultPanel(), 2,0);
+        this.add(registerMovePanel = new RegisterMovePanel(), 3,0);
 
     }
 
