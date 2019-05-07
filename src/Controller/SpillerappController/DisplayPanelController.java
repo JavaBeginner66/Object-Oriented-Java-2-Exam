@@ -32,7 +32,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         Button b = (Button) event.getSource();
         String s = b.getText();
         switch(s){
-            case "Rankering":
+            case "Rangering":
                 listRanks();
                 break;
             case "Søk etter person":
@@ -49,7 +49,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         Scene rankScene = new Scene(ranksWindow, 300, 500);
 
         Stage newWindow = new Stage();
-        newWindow.setTitle("Rangeringer");
+        newWindow.setTitle("Rangering");
         newWindow.setScene(rankScene);
 
         //writeRanksFromFile(ranksWindow);
