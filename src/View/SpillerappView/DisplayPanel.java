@@ -7,6 +7,7 @@ import Model.SpillerappModel.Interface.GameEngine;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
@@ -21,26 +22,27 @@ public class DisplayPanel extends VBox {
     private TextArea movesDescription;
 
     public DisplayPanel(){
-        this.setStyle("-fx-background-color: #c4c4c4;");
-        this.setPadding(new Insets(10,10,10,10));
+        this.getStyleClass().add("displayPanel");
         this.setSpacing(10);
 
         componentSetup();
     }
 
     private void componentSetup(){
-        GridPane searchField = new GridPane();
+        HBox searchField = new HBox();
 
         rank = new Button("Rangering");
-        searchField.add(searchArea = new TextField(), 0,0);
-        searchField.add(search = new Button("Søk etter person"), 1,0);
+        searchArea = new TextField();
+        search = new Button("Søk etter person");
+        searchField.getChildren().addAll(searchArea, search);
         matches = new ListView<FinalChessObject>();
         movesDescription = new TextArea();
         ScrollPane matchesView = new ScrollPane(matches);
         ScrollPane movesView = new ScrollPane(movesDescription);
 
+        searchField.setSpacing(10);
+        searchArea.setMinWidth(230);
         matches.setMinWidth(350);
-
         movesView.setMaxWidth(350);
 
 

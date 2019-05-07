@@ -33,9 +33,7 @@ public class ChessPanel extends GridPane {
     }};
 
     public ChessPanel(){
-        this.setPadding(new Insets(10,10,10,10));
-
-
+        this.getStyleClass().add("chessPanel");
     }
 
     public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
