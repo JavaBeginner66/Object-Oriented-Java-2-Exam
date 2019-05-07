@@ -69,6 +69,7 @@ public class ResultPanel extends HBox {
         chooseMatch.setPromptText("Velg Parti");
         resultBox.setPromptText("Resultat");
         resultBox.getItems().addAll("1-0", "0-1", "1/2-1/2");
+        chooseMatch.setMinWidth(300);
 
         this.getChildren().addAll(resultLabel, chooseMatch, resultBox, register);
     }

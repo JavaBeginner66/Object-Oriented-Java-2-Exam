@@ -13,8 +13,6 @@ public class MainFrame extends GridPane {
     private ResultPanel resultPanel;
     private RegisterMovePanel registerMovePanel;
 
-    private Button saveData;
-
     public MainFrame(){
         this.setPadding(new Insets(20,20,20,20));
         this.setVgap(20);
@@ -24,7 +22,6 @@ public class MainFrame extends GridPane {
         this.add(resultPanel = new ResultPanel(), 0,2);
         this.add(registerMovePanel = new RegisterMovePanel(), 0,3);
 
-        this.add(saveData = new Button("Lagre Data"), 0, 4);
     }
 
     public void addListeners(Engine engine){
@@ -35,10 +32,6 @@ public class MainFrame extends GridPane {
     }
 
     /* Get methods */
-
-    public Button getSaveData() {
-        return saveData;
-    }
 
     public RegisterPlayerPanel getRegisterPlayerPanel() {
         return registerPlayerPanel;

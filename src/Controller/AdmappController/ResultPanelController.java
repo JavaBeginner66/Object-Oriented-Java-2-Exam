@@ -36,9 +36,9 @@ public class ResultPanelController implements EventHandler<ActionEvent> {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            //mainFrame.getRegisterMatchPanel().emptyFields();
-            /* Oppdater matchliste*/
-            //mainFrame.getRegiserMovePanel;
+
+            /* Oppdater resultatliste*/
+            mainFrame.getRegisterMovePanel().update();
         }
     }
 }

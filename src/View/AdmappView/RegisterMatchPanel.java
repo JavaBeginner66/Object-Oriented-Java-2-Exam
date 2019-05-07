@@ -52,8 +52,8 @@ public class RegisterMatchPanel extends HBox {
         day.setMaxWidth(80);
         month.setMaxWidth(80);
         year.setMaxWidth(80);
-        participant1.setMinWidth(130);
-        participant2.setMinWidth(130);
+        participant1.setMinWidth(150);
+        participant2.setMinWidth(150);
 
         this.getChildren().addAll(matchLabel, participant1,participant2, time, day, month, year, registerMatch);
     }

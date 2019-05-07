@@ -12,4 +12,9 @@ public class MatchResult implements Serializable {
         this.matchInfo = info;
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return matchInfo + " Resultat: " + result;
+    }
 }
