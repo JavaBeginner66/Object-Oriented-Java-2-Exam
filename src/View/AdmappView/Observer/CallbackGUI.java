@@ -9,6 +9,7 @@ public class CallbackGUI implements Callback {
 
     public CallbackGUI(MainFrame mainFrame){
         this.mainFrame = mainFrame;
+        update();
     }
 
     @Override
