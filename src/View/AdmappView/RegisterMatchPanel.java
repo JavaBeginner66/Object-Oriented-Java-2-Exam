@@ -62,22 +62,30 @@ public class RegisterMatchPanel extends HBox {
     public void update() {
 
         DataInputStream fromFile;
-
-        try{
-            fromFile = new DataInputStream(new FileInputStream(RegisterPlayerPanel.playerFile));
-            try{
-                participant1.getItems().clear();
-                participant2.getItems().clear();
-                while(true){
-                    String name = fromFile.readUTF();
-                    participant1.getItems().addAll(name);
-                    participant2.getItems().addAll(name);
+        if(RegisterPlayerPanel.playerFile.exists()) {
+            try {
+                fromFile = new DataInputStream(new FileInputStream(RegisterPlayerPanel.playerFile));
+                try {
+                    participant1.getItems().clear();
+                    participant2.getItems().clear();
+                    while (true) {
+                        String name = fromFile.readUTF();
+                        participant1.getItems().addAll(name);
+                        participant2.getItems().addAll(name);
+                    }
+                } catch (EOFException eof) {
+                    fromFile.close();
                 }
-            }catch(EOFException eof){
-                fromFile.close();
+            } catch (IOException io) {
+                io.printStackTrace();
             }
-        }catch (IOException io){
-            io.printStackTrace();
+        }else{
+            try {
+                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterPlayerPanel.playerFile, true));
+                createNewFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
