@@ -50,7 +50,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         newWindow.setTitle("Rankeringer");
         newWindow.setScene(rankScene);
 
-        writeRanksFromFile(ranksWindow);
+        //writeRanksFromFile(ranksWindow);
 
         newWindow.show();
     }
@@ -85,6 +85,40 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     }
 
     private void listMatches(){
+        String name = mainFrame.getDisplayPanel().getSearchArea().getText();
 
+        if(RegisterMovePanel.matchOverview.exists()) {
+            try {
+                FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
+                try {
+                    FinalChessObject chessObject;
+                    for (; ;) {
+
+                        ObjectInputStream fromFile = new ObjectInputStream(f);
+                        chessObject = (FinalChessObject) fromFile.readObject();
+                        if(name.equals(chessObject.getMatchResult().getMatchInfo().getName1()) ||
+                            name.equals(chessObject.getMatchResult().getMatchInfo().getName1())){
+                            mainFrame.getDisplayPanel().getMatches().getItems().addAll(chessObject);
+                            //window.getChildren().addAll(chessObject.getMatchResult().getMatchInfo().ge);
+                        }
+
+
+                    }
+                }catch (ClassNotFoundException c){
+                    c.printStackTrace();
+                }catch (EOFException eof) {
+                    f.close();
+                }
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        }else{
+            try {
+                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                createNewFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

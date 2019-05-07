@@ -1,6 +1,7 @@
 package View.SpillerappView;
 
 import Controller.SpillerappController.DisplayPanelController;
+import Model.AdmappModel.FinalChessObject;
 import Model.SpillerappModel.Interface.GameEngine;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -13,7 +14,7 @@ public class DisplayPanel extends VBox {
     private Button rank;
     private TextField searchArea;
     private Button search;
-    private ListView matches;
+    private ListView<FinalChessObject> matches;
     private TextArea movesDescription;
 
     public DisplayPanel(){
@@ -30,7 +31,7 @@ public class DisplayPanel extends VBox {
         rank = new Button("Rankering");
         searchField.add(searchArea = new TextField(), 0,0);
         searchField.add(search = new Button("Søk etter parti"), 1,0);
-        matches = new ListView();
+        matches = new ListView<FinalChessObject>();
         movesDescription = new TextArea();
         ScrollPane matchesView = new ScrollPane(matches);
         ScrollPane movesView = new ScrollPane(movesDescription);
@@ -40,7 +41,7 @@ public class DisplayPanel extends VBox {
 
 
 
-        this.getChildren().addAll(rank, searchField, matchesView, movesView );
+        this.getChildren().addAll(rank, searchField, matchesView, movesView);
     }
 
     public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
