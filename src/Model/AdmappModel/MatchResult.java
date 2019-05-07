@@ -3,8 +3,8 @@ package Model.AdmappModel;
 import java.io.Serializable;
 
 public class MatchResult implements Serializable {
-    private static final long serialVersionUID = -6138795247226245073L;
 
+    private static final long serialVersionUID = 2456611477146739147L;
     private ChessMatchInfo matchInfo;
     private String result;
 

@@ -16,6 +16,7 @@ import java.io.*;
 public class RegisterMovePanel extends HBox {
 
     public final static File resultFile = new File("resultat");
+    public final static File matchOverview = new File("oversikt");
 
     private TextField moveDescription;
     private ComboBox moveComment;
@@ -62,6 +63,10 @@ public class RegisterMovePanel extends HBox {
             }
         }
 
+    }
+
+    public void emptyFields(){
+        this.moveDescription.setText("");
     }
 
     private void componentSetup(){
