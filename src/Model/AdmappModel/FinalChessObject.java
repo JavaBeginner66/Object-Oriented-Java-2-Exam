@@ -17,7 +17,7 @@ public class FinalChessObject implements Serializable {
 
     @Override
     public String toString() {
-        return matchResult + " \n " + moves;
+        return matchResult + "";
     }
 
     /* Get methods */

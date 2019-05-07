@@ -10,6 +10,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -34,11 +35,12 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             case "Rankering":
                 listRanks();
                 break;
-            case "Søk etter parti":
+            case "Søk etter person":
                 listMatches();
                 break;
         }
     }
+
 
 
     private void listRanks(){
@@ -64,7 +66,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                     for (; ;) {
                         ObjectInputStream fromFile = new ObjectInputStream(f);
                         chessObject = (FinalChessObject) fromFile.readObject();
-                        //window.getChildren().addAll(chessObject.getMatchResult().getMatchInfo().ge);
                     }
                 }catch (ClassNotFoundException c){
                     c.printStackTrace();
@@ -85,6 +86,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     }
 
     private void listMatches(){
+        System.out.print("Yo");
         String name = mainFrame.getDisplayPanel().getSearchArea().getText();
 
         if(RegisterMovePanel.matchOverview.exists()) {
