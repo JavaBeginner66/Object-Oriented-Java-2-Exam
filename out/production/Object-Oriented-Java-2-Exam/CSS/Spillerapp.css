@@ -1,6 +1,8 @@
 .root {
 	-fx-font-family: "Arial";
 	-fx-background-color: #ccc;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
 }
 
 .displayPanel{

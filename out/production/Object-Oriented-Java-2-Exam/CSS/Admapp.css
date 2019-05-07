@@ -6,10 +6,6 @@
 	-fx-background-color: #ccc;
 }
 
-.shadow {
-	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 10, 0, 0);
-}
-
 .panel {
 	-fx-background-color: #2e3136;
 	-fx-padding: 10;
@@ -42,10 +38,6 @@
 .text-field:focused {
 	-fx-prompt-text-fill: transparent;
 	-fx-border-color: #00a1c9;
-}
-
-.RegisterMatchPanel {
-	-fx-background-color: red;
 }
 
 .button {
