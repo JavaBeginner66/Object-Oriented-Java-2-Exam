@@ -14,7 +14,8 @@ public class CallbackGUI implements Callback {
     @Override
     public void update() {
         mainFrame.getRegisterMatchPanel().update();
-        //mainFrame.getResultPanel().update();
+        mainFrame.getResultPanel().update();
+        mainFrame.getRegisterMovePanel().update();
 
     }
 }

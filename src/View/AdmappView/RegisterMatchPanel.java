@@ -71,9 +71,7 @@ public class RegisterMatchPanel extends VBox {
                     participant1.getItems().clear();
                     participant2.getItems().clear();
                     while (true) {
-                        System.out.print("what");
                         String name = fromFile.readUTF();
-
                         participant1.getItems().addAll(name);
                         participant2.getItems().addAll(name);
                     }
