@@ -49,7 +49,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         Scene rankScene = new Scene(ranksWindow, 300, 500);
 
         Stage newWindow = new Stage();
-        newWindow.setTitle("Rankeringer");
+        newWindow.setTitle("Rangeringer");
         newWindow.setScene(rankScene);
 
         //writeRanksFromFile(ranksWindow);
