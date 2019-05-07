@@ -33,7 +33,7 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
     private void writeToFile(){
 
         try {
-            toFile = new DataOutputStream(new FileOutputStream("deltakere.dat", true));
+            toFile = new DataOutputStream(new FileOutputStream("deltakere", true));
             toFile.writeUTF(registerName.getText());
             registerName.setText("");
         }catch (IOException e){

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ChessMatchInfo implements Serializable {
 
-    private static final long serialVersionUID = 4694861542429517006L;
+    private static final long serialVersionUID = 4694861842429517006L;
 
     private String name1;
     private String name2;

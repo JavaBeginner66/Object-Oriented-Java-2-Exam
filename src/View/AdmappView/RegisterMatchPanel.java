@@ -63,7 +63,7 @@ public class RegisterMatchPanel extends HBox {
         DataInputStream fromFile;
 
         try{
-            fromFile = new DataInputStream(new FileInputStream("deltakere.dat"));
+            fromFile = new DataInputStream(new FileInputStream("deltakere"));
             try{
                 participant1.getItems().clear();
                 participant2.getItems().clear();

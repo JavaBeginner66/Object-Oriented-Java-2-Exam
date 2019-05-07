@@ -15,10 +15,10 @@ import java.io.*;
 
 public class ResultPanel extends HBox {
 
-    private final File match = new File("match.dat");
+    public final static File match = new File("parti");
 
     private Button register;
-    private ComboBox chooseMatch;
+    private ComboBox<ChessMatchInfo> chooseMatch;
     private ComboBox<String> resultBox;
 
     public ResultPanel(){
@@ -30,31 +30,30 @@ public class ResultPanel extends HBox {
     }
 
     public void update(){
-        ObjectInputStream fromFile;
-        ObjectOutputStream createNewFile;
 
         if(match.exists()) {
             try {
-                fromFile = new ObjectInputStream(new FileInputStream(match));
+                FileInputStream f = new FileInputStream(match);
                 try {
+                    ChessMatchInfo matchInfo;
                     chooseMatch.getItems().clear();
-                    while (true) {
-                        try {
-                            ChessMatchInfo match = (ChessMatchInfo) fromFile.readObject();
-                            chooseMatch.getItems().addAll(match);
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                    for (; ;) {
+                        ObjectInputStream fromFile = new ObjectInputStream(f);
+                        System.out.println(fromFile.readObject());
+                        //chooseMatch.getItems().addAll(matchInfo);
                         }
+                    }catch (ClassNotFoundException c){
+                        c.printStackTrace();
+                    }catch (EOFException eof) {
+                        f.close();
                     }
-                } catch (EOFException eof) {
-                    fromFile.close();
-                }
             } catch (IOException io) {
                 io.printStackTrace();
             }
         }else{
             try {
-                createNewFile = new ObjectOutputStream(new FileOutputStream(match, true));
+                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(match, true));
+                createNewFile.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -64,7 +63,7 @@ public class ResultPanel extends HBox {
 
     private void componentSetup(){
         Label resultLabel = new Label("Resultat");
-        chooseMatch = new ComboBox();
+        chooseMatch = new ComboBox<ChessMatchInfo>();
         resultBox = new ComboBox<String>();
         register = new Button("Registrer");
 
