@@ -2,14 +2,11 @@ package Controller.SpillerappController;
 
 import Model.AdmappModel.FinalChessObject;
 import Model.AdmappModel.MoveDescriptionObject;
-import Model.SpillerappModel.ChessCell;
-import Model.SpillerappModel.CreateBoard;
+import Model.SpillerappModel.BoardManager;
 import View.SpillerappView.MainFrame;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-import java.util.Collections;
 import java.util.TreeMap;
 
 public class ListViewController implements EventHandler<MouseEvent> {
@@ -37,6 +34,6 @@ public class ListViewController implements EventHandler<MouseEvent> {
     }
 
     private void initializeChessBoard(MainFrame mainFrame){
-        CreateBoard board = new CreateBoard(mainFrame);
+        BoardManager board = new BoardManager(mainFrame);
     }
 }
