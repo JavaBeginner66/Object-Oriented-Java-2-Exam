@@ -92,17 +92,16 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                 FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
                 try {
                     FinalChessObject chessObject;
+                    mainFrame.getDisplayPanel().getMatches().getItems().clear();
                     for (; ;) {
 
                         ObjectInputStream fromFile = new ObjectInputStream(f);
                         chessObject = (FinalChessObject) fromFile.readObject();
                         if(name.equals(chessObject.getMatchResult().getMatchInfo().getName1()) ||
-                            name.equals(chessObject.getMatchResult().getMatchInfo().getName1())){
+                            name.equals(chessObject.getMatchResult().getMatchInfo().getName2())){
                             mainFrame.getDisplayPanel().getMatches().getItems().addAll(chessObject);
                             //window.getChildren().addAll(chessObject.getMatchResult().getMatchInfo().ge);
                         }
-
-
                     }
                 }catch (ClassNotFoundException c){
                     c.printStackTrace();
