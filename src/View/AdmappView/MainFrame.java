@@ -14,8 +14,8 @@ public class MainFrame extends GridPane {
     private RegisterMovePanel registerMovePanel;
 
     public MainFrame(){
-        this.setPadding(new Insets(20,20,20,20));
-        this.setVgap(20);
+        this.setPadding(new Insets(10));
+        this.setVgap(10);
 
         this.add(registerPlayerPanel = new RegisterPlayerPanel(), 0,0);
         this.add(registerMatchPanel = new RegisterMatchPanel(), 0,1);

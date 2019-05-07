@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
+
 
 public class DisplayPanel extends VBox {
 
@@ -25,7 +27,7 @@ public class DisplayPanel extends VBox {
     private void componentSetup(){
         GridPane searchField = new GridPane();
 
-        rank = new Button("Rankering");
+        rank = new Button("Rangering");
         searchField.add(searchArea = new TextField(), 0,0);
         searchField.add(search = new Button("Søk"), 1,0);
         matches = new ListView();

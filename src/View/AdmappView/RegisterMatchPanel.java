@@ -23,8 +23,7 @@ public class RegisterMatchPanel extends HBox {
 
 
     public RegisterMatchPanel(){
-        this.setStyle("-fx-background-color: #c4c4c4;");
-        this.setPadding(new Insets(10,10,10,10));
+        this.getStyleClass().add("panel");
         this.setSpacing(10);
 
         componentSetup();
@@ -45,13 +44,13 @@ public class RegisterMatchPanel extends HBox {
         participant2.setPromptText("Velg navn");
         time.setPromptText("Klokkeslett");
         day.setPromptText("Dag");
-        month.setPromptText("Månde");
+        month.setPromptText("Måned");
         year.setPromptText("år");
 
-        time.setMaxWidth(80);
-        day.setMaxWidth(80);
-        month.setMaxWidth(80);
-        year.setMaxWidth(80);
+        time.setMaxWidth(90);
+        day.setMaxWidth(90);
+        month.setMaxWidth(90);
+        year.setMaxWidth(90);
         participant1.setMinWidth(150);
         participant2.setMinWidth(150);
 
