@@ -27,7 +27,7 @@ public class ListViewController implements EventHandler<MouseEvent> {
         mainFrame.getDisplayPanel().getMovesDescription().clear();
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
         TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
-        for(int i = 1; i<moves.size(); i++){
+        for(int i = 1; i<=moves.size(); i++){
             mainFrame.getDisplayPanel().getMovesDescription().appendText(i + ": " + moves.get(i) +  "\n");
         }
 
