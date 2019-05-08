@@ -3,24 +3,18 @@ package Controller.SpillerappController;
 import Model.AdmappModel.FinalChessObject;
 import Model.AdmappModel.MatchResult;
 import Model.SpillerappModel.Interface.GameEngine;
-import Model.SpillerappModel.Points;
 import View.AdmappView.RegisterMovePanel;
 import View.SpillerappView.MainFrame;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DisplayPanelController implements EventHandler<ActionEvent> {
 
@@ -65,7 +59,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         rankScene.getStylesheets().add("CSS/rangering.css");
 
         Stage newWindow = new Stage();
-        newWindow.setTitle("Rangering");
+
         newWindow.setScene(rankScene);
 
         writeRanksFromFile(ranksWindow);
@@ -109,13 +103,27 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                     namePoints.put(result.getMatchInfo().getName2(), 0.0);
                 }
             }
+            try{
+                FileInputStream s = new FileInputStream(points);
                 try{
-                    FileInputStream s = new FileInputStream(points);
-                    try{
-                        fromPointsFile = new ObjectInputStream(s);
-                            for(int i = 0; i<namePoints.size(); i++){
-                                window.getChildren().addAll(new Label(namePoints.toString()));
-                            }
+                    fromPointsFile = new ObjectInputStream(s);
+
+
+                    Set<Map.Entry<String, Double>> set = namePoints.entrySet();
+                    List<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String, Double>>(
+                            set);
+
+                    Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+                        public int compare(Map.Entry<String, Double> o1,
+                                           Map.Entry<String, Double> o2) {
+                            return o2.getValue().compareTo(o1.getValue());
+                        }
+                    });
+
+                    for(Map.Entry<String, Double> entry : list){
+                        window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
+                    }
+
                 }catch (EOFException eof){
                     s.close();
                 }
@@ -173,7 +181,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                         fromMatchFile = new ObjectInputStream(f);
                         chessObject = (FinalChessObject) fromMatchFile.readObject();
                         if(name.equals(chessObject.getMatchResult().getMatchInfo().getName1()) ||
-                            name.equals(chessObject.getMatchResult().getMatchInfo().getName2())){
+                                name.equals(chessObject.getMatchResult().getMatchInfo().getName2())){
                             mainFrame.getDisplayPanel().getMatches().getItems().addAll(chessObject);
                         }
                     }
@@ -188,11 +196,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         }else{
             try {
                 toFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
-                /*
-                toPointsFile = new ObjectOutputStream(new FileOutputStream(points, true));
-                toPointsFile.close();
-                toFile.close();
-                */
             } catch (IOException e) {
                 e.printStackTrace();
             }
