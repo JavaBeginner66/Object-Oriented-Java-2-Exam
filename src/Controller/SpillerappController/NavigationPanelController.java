@@ -18,6 +18,7 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
     private BoardManager boardManager;
 
     public static int moveCount = 1;
+    public static int playerTurn = 1;
 
     public NavigationPanelController(MainFrame mainFrame, GameEngine gameEngine, BoardManager boardManager){
         this.mainFrame = mainFrame;
@@ -51,6 +52,12 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
             System.out.print("Ingen flere trekk");
         }
         moveCount++;
+        if(playerTurn == 1)
+            playerTurn = 0;
+        else
+            playerTurn = 1;
+
+        System.out.print(playerTurn);
     }
 
     private void previousMove(){
