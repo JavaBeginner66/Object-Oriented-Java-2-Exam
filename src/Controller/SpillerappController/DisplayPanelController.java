@@ -17,6 +17,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DisplayPanelController implements EventHandler<ActionEvent> {
 
@@ -69,68 +73,60 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     }
 
     private void writeRanksFromFile(VBox window){
+        ArrayList<FinalChessObject> chessObjects = new ArrayList<>();
+        ArrayList<Points> pointsObject = new ArrayList<>();
         if(RegisterMovePanel.matchOverview.exists() && points.exists()) {
             try {
                 FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
-
                 try {
                     FinalChessObject chessObject;
-
                     for (; ; ) {
-
                         fromFile = new ObjectInputStream(f);
-
-                        chessObject = (FinalChessObject) fromFile.readObject();
-
-                        Points name1 = new Points(chessObject.getMatchResult().getMatchInfo().getName1());
-                        Points name2 = new Points(chessObject.getMatchResult().getMatchInfo().getName2());
-
-                        switch (chessObject.getMatchResult().getResult()) {
-                            case "1-0":
-                                name1.addPoints(1);
-                                break;
-                            case "0-1":
-                                name2.addPoints(1);
-                                break;
-                            case "1/2-1/2":
-                                name1.addPoints(0.5);
-                                name2.addPoints(0.5);
-                                break;
-                        }
-
-                        try{
-                            FileOutputStream o = new FileOutputStream(points);
-
-                            toPointsFile = new ObjectOutputStream(o);
-                            toPointsFile.writeObject(name1);
-                            toPointsFile.writeObject(name2);
-
-                        }catch (IOException ioe){
-                            ioe.printStackTrace();
-                        }
-
-                        try{
-                            FileInputStream s = new FileInputStream(points);
-                            try{
-                                Points points;
-                                fromPointsFile = new ObjectInputStream(s);
-                                for(;;){
-                                    points = (Points)fromPointsFile.readObject();
-                                    window.getChildren().addAll(new Label(points.toString()));
-                                }
-                            }catch (EOFException eof){
-                                s.close();
-                            }
-                        }catch (IOException io){
-                            io.printStackTrace();
-                        }
+                        Object obj = fromFile.readObject();
+                        chessObjects.add((FinalChessObject) obj);
+                        chessObject = (FinalChessObject) obj;
+                        pointsObject.add(new Points(chessObject.getMatchResult().getMatchInfo().getName1()));
+                        pointsObject.add(new Points(chessObject.getMatchResult().getMatchInfo().getName2()));
                     }
-                }catch (ClassNotFoundException cl){
+                } catch (ClassNotFoundException cl) {
                     cl.printStackTrace();
-                }catch (EOFException eof) {
+                } catch (EOFException eof) {
                     f.close();
                 }
             } catch (IOException io) {
+                io.printStackTrace();
+            }
+
+            Map<String, Double> namePoints = new HashMap<String, Double>();
+            for (int i = 0; i < chessObjects.size(); i++) {
+                if (namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName1())) {
+                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.4);
+                    System.out.println(namePoints + " " + 0.4);
+                } else if(!namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName1())){
+                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.3);
+                    System.out.println(namePoints+ " " + 0.3);
+                }
+                if (namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName2())) {
+                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.2);
+                    System.out.println(namePoints+ " " + 0.2);
+                } else if(!namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName2())){
+                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.1);
+                    System.out.println(namePoints+ " " + 0.1);
+                }
+            }
+
+
+                try{
+                    FileInputStream s = new FileInputStream(points);
+                    try{
+                        fromPointsFile = new ObjectInputStream(s);
+
+                            window.getChildren().addAll(new Label(namePoints.toString()));
+
+                }catch (EOFException eof){
+                    s.close();
+                }
+            }catch (IOException io){
                 io.printStackTrace();
             }
         }else{
