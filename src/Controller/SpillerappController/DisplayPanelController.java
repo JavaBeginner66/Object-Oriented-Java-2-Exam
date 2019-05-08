@@ -3,6 +3,7 @@ package Controller.SpillerappController;
 import Model.AdmappModel.FinalChessObject;
 import Model.AdmappModel.MatchResult;
 import Model.SpillerappModel.Interface.GameEngine;
+import Model.SpillerappModel.Points;
 import View.AdmappView.RegisterMovePanel;
 import View.SpillerappView.MainFrame;
 import javafx.event.ActionEvent;
@@ -20,6 +21,12 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
 
     private MainFrame mainFrame;
     private GameEngine gameEngine;
+
+    public final static File points = new File("poeng");
+
+    private ObjectInputStream fromFile;
+    private ObjectOutputStream createNewFile;
+    private ObjectOutputStream toPointsFile;
 
     public DisplayPanelController(MainFrame mainFrame, GameEngine gameEngine){
         this.mainFrame = mainFrame;
@@ -52,7 +59,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         newWindow.setTitle("Rangering");
         newWindow.setScene(rankScene);
 
-        //writeRanksFromFile(ranksWindow);
+        writeRanksFromFile(ranksWindow);
 
         newWindow.show();
     }
@@ -61,12 +68,30 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         if(RegisterMovePanel.matchOverview.exists()) {
             try {
                 FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
+                FileOutputStream o = new FileOutputStream(points);
                 try {
                     FinalChessObject chessObject;
                     for (; ;) {
-                        ObjectInputStream fromFile = new ObjectInputStream(f);
+                        fromFile = new ObjectInputStream(f);
                         chessObject = (FinalChessObject) fromFile.readObject();
+                        Points name1 = new Points(chessObject.getMatchResult().getMatchInfo().getName1());
+                        Points name2 = new Points(chessObject.getMatchResult().getMatchInfo().getName2());
+                        switch (chessObject.getMatchResult().getResult()) {
+                            case "1-0":
+                                name1.addPoints(1);
+                                break;
+                            case "0-1":
+                                name2.addPoints(1);
+                                break;
+                            case "1/2-1/2":
+                                name1.addPoints(0.5);
+                                name2.addPoints(0.5);
+                                break;
+                        }
+                        toPointsFile = new ObjectOutputStream(o);
+                        toPointsFile.writeObject();
                     }
+
                 }catch (ClassNotFoundException c){
                     c.printStackTrace();
                 }catch (EOFException eof) {
@@ -77,7 +102,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             }
         }else{
             try {
-                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
                 createNewFile.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -95,8 +120,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                     FinalChessObject chessObject;
                     mainFrame.getDisplayPanel().getMatches().getItems().clear();
                     for (; ;) {
-
-                        ObjectInputStream fromFile = new ObjectInputStream(f);
+                        fromFile = new ObjectInputStream(f);
                         chessObject = (FinalChessObject) fromFile.readObject();
                         if(name.equals(chessObject.getMatchResult().getMatchInfo().getName1()) ||
                             name.equals(chessObject.getMatchResult().getMatchInfo().getName2())){
@@ -113,7 +137,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             }
         }else{
             try {
-                ObjectOutputStream createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
                 createNewFile.close();
             } catch (IOException e) {
                 e.printStackTrace();

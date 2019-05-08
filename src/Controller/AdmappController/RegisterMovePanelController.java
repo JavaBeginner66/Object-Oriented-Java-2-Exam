@@ -54,13 +54,6 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
                           (String)mainFrame.getRegisterMovePanel().getMoveComment().getValue()
                   ));
 
-        /*
-        Set keys = moves.keySet();
-        for (Iterator i = keys.iterator(); i.hasNext();) {
-            String s = (String) i.next();
-            System.out.print(moves.get(s));
-        }
-        */
       countMapItems++;
         /* Disable Comboboksen for å ''locke'' inn til objektet*/
         mainFrame.getRegisterMovePanel().emptyFields();
