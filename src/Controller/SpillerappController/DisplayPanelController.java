@@ -62,6 +62,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
 
         VBox ranksWindow = new VBox();
         Scene rankScene = new Scene(ranksWindow, 300, 500);
+        rankScene.getStylesheets().add("CSS/rangering.css");
 
         Stage newWindow = new Stage();
         newWindow.setTitle("Rangering");
