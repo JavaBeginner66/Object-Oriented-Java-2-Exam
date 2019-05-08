@@ -8,5 +8,5 @@ public interface GameEngine {
     /**
      * Flytter en brikke til en ny ChessCell
      */
-    public void movePiece(String move);
+    public void findPiece(String move);
 }

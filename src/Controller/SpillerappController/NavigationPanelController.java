@@ -19,13 +19,13 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
 
     public NavigationPanelController(MainFrame mainFrame, GameEngine gameEngine){
         this.mainFrame = mainFrame;
+        this.gameEngine = gameEngine;
     }
 
     @Override
     public void handle(ActionEvent event) {
         Button b = (Button) event.getSource();
         String txt = b.getText();
-        System.out.print(txt);
         switch(txt){
             case "Neste":
                 nextMove();
@@ -42,8 +42,7 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
     private void nextMove(){
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
         TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
-        //System.out.print(moves.get(moveCount));
-        gameEngine.movePiece(moves.get(moveCount).getMove());
+        gameEngine.findPiece(moves.get(moveCount).getMove());
         moveCount++;
     }
 

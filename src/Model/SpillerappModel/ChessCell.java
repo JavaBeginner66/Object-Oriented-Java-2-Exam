@@ -47,42 +47,50 @@ public class ChessCell extends StackPane {
 
     private void pieceSetup(){
         switch(position){
-            case "A2": case "B2":case "C2": case "D2":case "E2": case "F2":case "G2": case "H2":
+            case "a2": case "b2":case "c2": case "d2":case "e2": case "f2":case "g2": case "h2":
                 addPiece(ChessPanel.pieces.get("Hvit_Bonde"));
                 break;
-            case "A7": case "B7":case "C7": case "D7":case "E7": case "F7":case "G7": case "H7":
+            case "a7": case "b7":case "c7": case "d7":case "e7": case "f7":case "g7": case "h7":
                 addPiece(ChessPanel.pieces.get("Svart_Bonde"));
                 break;
-            case "A1": case"H1":
+            case "a1": case"h1":
                 addPiece(ChessPanel.pieces.get("Hvit_Torn"));
                 break;
-            case "A8": case"H8":
+            case "a8": case"h8":
                 addPiece(ChessPanel.pieces.get("Svart_Torn"));
                 break;
-            case "B1": case"G1":
+            case "b1": case"g1":
                 addPiece(ChessPanel.pieces.get("Hvit_Hest"));
                 break;
-            case "B8": case"G8":
+            case "b8": case"g8":
                 addPiece(ChessPanel.pieces.get("Svart_Hest"));
                 break;
-            case "C1": case"F1":
+            case "c1": case"f1":
                 addPiece(ChessPanel.pieces.get("Hvit_Loper"));
                 break;
-            case "C8": case"F8":
+            case "c8": case"f8":
                 addPiece(ChessPanel.pieces.get("Svart_Loper"));
                 break;
-            case "D1":
+            case "d1":
                 addPiece(ChessPanel.pieces.get("Hvit_Konge"));
                 break;
-            case "D8":
+            case "d8":
                 addPiece(ChessPanel.pieces.get("Svart_Konge"));
                 break;
-            case "E1":
+            case "e1":
                 addPiece(ChessPanel.pieces.get("Hvit_Dronning"));
                 break;
-            case "E8":
+            case "e8":
                 addPiece(ChessPanel.pieces.get("Svart_Dronning"));
                 break;
         }
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public ImageView getPiece() {
+        return piece;
     }
 }

@@ -8,14 +8,14 @@ import java.util.TreeMap;
 
 public class ChessPanel extends GridPane {
 
-    public static final String[] chessPositions = {"A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1",
-            "B8", "B7", "B6", "B5", "B4", "B3", "B2", "B1",
-            "C8", "C7", "C6", "C5", "C4", "C3", "C2", "C1",
-            "D8", "D7", "D6", "D5", "D4", "D3", "D2", "D1",
-            "E8", "E7", "E6", "E5", "E4", "E3", "E2", "E1",
-            "F8", "F7", "F6", "F5", "F4", "F3", "F2", "F1",
-            "G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1",
-            "H8", "H7", "H6", "H5", "H4", "H3", "H2", "H1"};
+    public static final String[] chessPositions = {"a8", "a7", "a6", "a5", "a4", "a3", "a2", "a1",
+            "b8", "b7", "b6", "b5", "b4", "b3", "b2", "b1",
+            "c8", "c7", "c6", "c5", "c4", "c3", "c2", "c1",
+            "d8", "d7", "d6", "d5", "d4", "d3", "d2", "d1",
+            "e8", "e7", "e6", "e5", "e4", "e3", "e2", "e1",
+            "f8", "f7", "f6", "f5", "f4", "f3", "f2", "f1",
+            "g8", "g7", "g6", "g5", "g4", "g3", "g2", "g1",
+            "h8", "h7", "h6", "h5", "h4", "h3", "h2", "h1"};
 
     public static final TreeMap<String, String> pieces = new TreeMap<String, String>(){{
         put("Hvit_Bonde", "/Brikker/Hvit_Bonde.png");
