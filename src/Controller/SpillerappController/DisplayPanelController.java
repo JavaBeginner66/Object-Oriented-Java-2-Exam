@@ -74,19 +74,14 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
 
     private void writeRanksFromFile(VBox window){
         ArrayList<FinalChessObject> chessObjects = new ArrayList<>();
-        ArrayList<Points> pointsObject = new ArrayList<>();
         if(RegisterMovePanel.matchOverview.exists() && points.exists()) {
             try {
                 FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
                 try {
-                    FinalChessObject chessObject;
                     for (; ; ) {
                         fromFile = new ObjectInputStream(f);
                         Object obj = fromFile.readObject();
                         chessObjects.add((FinalChessObject) obj);
-                        chessObject = (FinalChessObject) obj;
-                        pointsObject.add(new Points(chessObject.getMatchResult().getMatchInfo().getName1()));
-                        pointsObject.add(new Points(chessObject.getMatchResult().getMatchInfo().getName2()));
                     }
                 } catch (ClassNotFoundException cl) {
                     cl.printStackTrace();
@@ -99,23 +94,20 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
 
             Map<String, Double> namePoints = new HashMap<String, Double>();
             for (int i = 0; i < chessObjects.size(); i++) {
-                if (namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName1())) {
-                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.4);
-                    System.out.println(namePoints + " " + 0.4);
-                } else if(!namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName1())){
-                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.3);
-                    System.out.println(namePoints+ " " + 0.3);
+                // Forkorter referansen
+                MatchResult result = chessObjects.get(i).getMatchResult();
+                if (namePoints.containsKey(result.getMatchInfo().getName1())) {
+                    givePoints(result, namePoints);
+
+                } else{
+                    namePoints.put(result.getMatchInfo().getName1(), 0.0);
                 }
-                if (namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName2())) {
-                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.2);
-                    System.out.println(namePoints+ " " + 0.2);
-                } else if(!namePoints.containsKey(chessObjects.get(i).getMatchResult().getMatchInfo().getName2())){
-                    namePoints.put(chessObjects.get(i).getMatchResult().getMatchInfo().getName1(), 0.1);
-                    System.out.println(namePoints+ " " + 0.1);
+                if (namePoints.containsKey(result.getMatchInfo().getName2())) {
+                    givePoints(result, namePoints);
+                } else{
+                    namePoints.put(result.getMatchInfo().getName2(), 0.0);
                 }
             }
-
-
                 try{
                     FileInputStream s = new FileInputStream(points);
                     try{
@@ -123,8 +115,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                             for(int i = 0; i<namePoints.size(); i++){
                                 window.getChildren().addAll(new Label(namePoints.toString()));
                             }
-
-
                 }catch (EOFException eof){
                     s.close();
                 }
@@ -144,7 +134,28 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         }
     }
 
-
+    private void givePoints(MatchResult result, Map<String, Double> namePoints) {
+        switch (result.getResult()) {
+            case "1-0":
+                result.getMatchInfo().setPoints1(1);
+                namePoints.put(result.getMatchInfo().getName1(),
+                        result.getMatchInfo().getPoints1());
+                break;
+            case "0-1":
+                result.getMatchInfo().setPoints2(1);
+                namePoints.put(result.getMatchInfo().getName2(),
+                        result.getMatchInfo().getPoints2());
+                break;
+            case "1/2-1/2":
+                result.getMatchInfo().setPoints1(0.5);
+                result.getMatchInfo().setPoints2(0.5);
+                namePoints.put(result.getMatchInfo().getName1(),
+                        result.getMatchInfo().getPoints1());
+                namePoints.put(result.getMatchInfo().getName2(),
+                        result.getMatchInfo().getPoints2());
+                break;
+        }
+    }
 
 
 

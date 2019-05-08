@@ -13,6 +13,9 @@ public class ChessMatchInfo implements Serializable {
     private String month;
     private String year;
 
+    private double points1;
+    private double points2;
+
     public ChessMatchInfo(String name1, String name2, String time, String day, String month, String year){
         this.name1 = name1;
         this.name2 = name2;
@@ -22,7 +25,12 @@ public class ChessMatchInfo implements Serializable {
         this.year = year;
     }
 
-    /* Get methods */
+    @Override
+    public String toString() {
+        return name1 + " mot " + name2 + " kl: " + time + " Dato: " + day + "/" + month + "/" + year;
+    }
+
+    /* Get and set methods */
 
     public String getName1() {
         return name1;
@@ -48,8 +56,19 @@ public class ChessMatchInfo implements Serializable {
         return year;
     }
 
-    @Override
-    public String toString() {
-        return name1 + " mot " + name2 + " kl: " + time + " Dato: " + day + "/" + month + "/" + year;
+    public double getPoints1() {
+        return points1;
+    }
+
+    public double getPoints2() {
+        return points2;
+    }
+
+    public void setPoints1(double points1) {
+        this.points1 += points1;
+    }
+
+    public void setPoints2(double points2) {
+        this.points2 += points2;
     }
 }
