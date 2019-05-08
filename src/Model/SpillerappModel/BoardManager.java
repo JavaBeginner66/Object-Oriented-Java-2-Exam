@@ -1,16 +1,10 @@
 package Model.SpillerappModel;
 
 
-import Model.AdmappModel.MoveDescriptionObject;
-import Model.SpillerappModel.Interface.GameEngine;
 import View.SpillerappView.ChessPanel;
 import View.SpillerappView.MainFrame;
-import View.SpillerappView.Observer.CallbackGUI;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class BoardManager extends GameEngineImpl {
 
@@ -66,7 +60,7 @@ public class BoardManager extends GameEngineImpl {
                     if (move.equals(newMove)) {
 
                         // Bonde funnet
-                        movePiece(chessCells.get(i).getPosition(), move);
+                        movePiece(i, chessCells.get(i).getPosition(), move);
                     }
                 }
             }
@@ -77,9 +71,18 @@ public class BoardManager extends GameEngineImpl {
      */
     }
 
-    private void movePiece(String oldPosition, String newPosition){
+    private void movePiece(int cell, String oldPosition, String newPosition){
         System.out.println("Moving piece from " + oldPosition + " to " + newPosition);
+        chessCells.get(cell).removePiece();
+        if(true){
+            // IF WHITE TURN
+            for(int i = 0; i<chessCells.size(); i++){
+                if(chessCells.get(i).getPosition().equals(newPosition)){
+                    chessCells.get(i).addPiece(newPosition, "Brikker/Hvit_Bonde.png");
+                }
+            }
 
+        }
     }
 
     public ArrayList<ChessCell> getChessCells() {

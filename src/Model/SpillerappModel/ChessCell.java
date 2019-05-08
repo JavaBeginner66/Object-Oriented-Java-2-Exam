@@ -3,7 +3,6 @@ package Model.SpillerappModel;
 
 import View.SpillerappView.ChessPanel;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -39,49 +38,59 @@ public class ChessCell extends StackPane {
 
     }
 
-    public void addPiece(String img){
+    public void addPiecesToBoard(String img){
         //this.getChildren().removeAll(piece);
         piece = new ImageView( new Image(img));
         this.getChildren().addAll(piece);
     }
 
+    public void addPiece(String newPosition, String img){
+        this.position = newPosition;
+        piece = new ImageView( new Image(img));
+        this.getChildren().addAll(piece);
+    }
+
+    public void removePiece(){
+        this.getChildren().clear();
+    }
+
     private void pieceSetup(){
         switch(position){
             case "a2": case "b2":case "c2": case "d2":case "e2": case "f2":case "g2": case "h2":
-                addPiece(ChessPanel.pieces.get("Hvit_Bonde"));
+                addPiecesToBoard(ChessPanel.pieces.get("Hvit_Bonde"));
                 break;
             case "a7": case "b7":case "c7": case "d7":case "e7": case "f7":case "g7": case "h7":
-                addPiece(ChessPanel.pieces.get("Svart_Bonde"));
+                addPiecesToBoard(ChessPanel.pieces.get("Svart_Bonde"));
                 break;
             case "a1": case"h1":
-                addPiece(ChessPanel.pieces.get("Hvit_Torn"));
+                addPiecesToBoard(ChessPanel.pieces.get("Hvit_Torn"));
                 break;
             case "a8": case"h8":
-                addPiece(ChessPanel.pieces.get("Svart_Torn"));
+                addPiecesToBoard(ChessPanel.pieces.get("Svart_Torn"));
                 break;
             case "b1": case"g1":
-                addPiece(ChessPanel.pieces.get("Hvit_Hest"));
+                addPiecesToBoard(ChessPanel.pieces.get("Hvit_Hest"));
                 break;
             case "b8": case"g8":
-                addPiece(ChessPanel.pieces.get("Svart_Hest"));
+                addPiecesToBoard(ChessPanel.pieces.get("Svart_Hest"));
                 break;
             case "c1": case"f1":
-                addPiece(ChessPanel.pieces.get("Hvit_Loper"));
+                addPiecesToBoard(ChessPanel.pieces.get("Hvit_Loper"));
                 break;
             case "c8": case"f8":
-                addPiece(ChessPanel.pieces.get("Svart_Loper"));
+                addPiecesToBoard(ChessPanel.pieces.get("Svart_Loper"));
                 break;
             case "d1":
-                addPiece(ChessPanel.pieces.get("Hvit_Konge"));
+                addPiecesToBoard(ChessPanel.pieces.get("Hvit_Konge"));
                 break;
             case "d8":
-                addPiece(ChessPanel.pieces.get("Svart_Konge"));
+                addPiecesToBoard(ChessPanel.pieces.get("Svart_Konge"));
                 break;
             case "e1":
-                addPiece(ChessPanel.pieces.get("Hvit_Dronning"));
+                addPiecesToBoard(ChessPanel.pieces.get("Hvit_Dronning"));
                 break;
             case "e8":
-                addPiece(ChessPanel.pieces.get("Svart_Dronning"));
+                addPiecesToBoard(ChessPanel.pieces.get("Svart_Dronning"));
                 break;
         }
     }
