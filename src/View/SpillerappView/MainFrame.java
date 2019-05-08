@@ -17,6 +17,7 @@ public class MainFrame extends BorderPane {
 
     public void addListeners(GameEngine engine){
         displayPanel.addListeners(this, engine);
+        navigationPanel.addListeners(this, engine);
     }
 
     /* Get methods */

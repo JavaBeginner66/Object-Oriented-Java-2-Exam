@@ -1,14 +1,17 @@
 package Model.SpillerappModel;
 
 
+import Model.AdmappModel.MoveDescriptionObject;
+import Model.SpillerappModel.Interface.GameEngine;
 import View.SpillerappView.ChessPanel;
 import View.SpillerappView.MainFrame;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
-public class BoardManager {
+public class BoardManager implements GameEngine {
 
     private ArrayList<ChessCell> chessCells;
 
@@ -30,11 +33,14 @@ public class BoardManager {
             }
             colorCount++;
         }
-        addBoardPieces();
     }
 
-    private void addBoardPieces(){
-
+    @Override
+    public void movePiece(String move){
+    /*
+    Først finn ut hvilken brikke trekket gjelder
+    sjekk moven opp mot alle mulige plasser tabellen. Om den blir funnet,
+     */
     }
 
     public ArrayList<ChessCell> getChessCells() {

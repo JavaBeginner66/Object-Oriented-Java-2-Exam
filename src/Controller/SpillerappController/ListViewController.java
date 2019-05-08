@@ -21,6 +21,7 @@ public class ListViewController implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         listMoves();
         initializeChessBoard(mainFrame);
+        NavigationPanelController.moveCount = 1;
     }
 
     private void listMoves(){

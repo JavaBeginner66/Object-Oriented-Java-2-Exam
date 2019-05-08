@@ -29,7 +29,7 @@ public class NavigationPanel extends HBox {
     }
 
     public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
-        NavigationPanelController listener = new NavigationPanelController(mainFrame);
+        NavigationPanelController listener = new NavigationPanelController(mainFrame, gameEngine);
         autoMove.setOnAction(listener);
         previous.setOnAction(listener);
         next.setOnAction(listener);

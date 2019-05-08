@@ -1,7 +1,10 @@
 package Model.SpillerappModel;
 
+import Model.AdmappModel.MoveDescriptionObject;
 import Model.SpillerappModel.Interface.GameEngine;
 import View.SpillerappView.Observer.CallbackGUI;
+
+import java.util.TreeMap;
 
 public class GameEngineImpl implements GameEngine {
 
@@ -9,5 +12,10 @@ public class GameEngineImpl implements GameEngine {
 
     public GameEngineImpl(CallbackGUI callbackGUI){
         this.callbackGUI = callbackGUI;
+    }
+
+    @Override
+    public void movePiece(String move) {
+
     }
 }
