@@ -25,8 +25,10 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     public final static File points = new File("poeng");
 
     private ObjectInputStream fromFile;
-    private ObjectOutputStream createNewFile;
+    private ObjectOutputStream toFile;
+    private ObjectInputStream fromPointsFile;
     private ObjectOutputStream toPointsFile;
+
 
     public DisplayPanelController(MainFrame mainFrame, GameEngine gameEngine){
         this.mainFrame = mainFrame;
@@ -65,17 +67,22 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     }
 
     private void writeRanksFromFile(VBox window){
-        if(RegisterMovePanel.matchOverview.exists()) {
+        if(RegisterMovePanel.matchOverview.exists() && points.exists()) {
             try {
                 FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
-                FileOutputStream o = new FileOutputStream(points);
+
                 try {
                     FinalChessObject chessObject;
-                    for (; ;) {
+
+                    for (; ; ) {
+
                         fromFile = new ObjectInputStream(f);
+
                         chessObject = (FinalChessObject) fromFile.readObject();
+
                         Points name1 = new Points(chessObject.getMatchResult().getMatchInfo().getName1());
                         Points name2 = new Points(chessObject.getMatchResult().getMatchInfo().getName2());
+
                         switch (chessObject.getMatchResult().getResult()) {
                             case "1-0":
                                 name1.addPoints(1);
@@ -88,12 +95,36 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                                 name2.addPoints(0.5);
                                 break;
                         }
-                        toPointsFile = new ObjectOutputStream(o);
-                        toPointsFile.writeObject();
-                    }
 
-                }catch (ClassNotFoundException c){
-                    c.printStackTrace();
+                        try{
+                            FileOutputStream o = new FileOutputStream(points);
+
+                            toPointsFile = new ObjectOutputStream(o);
+                            toPointsFile.writeObject(name1);
+                            toPointsFile.writeObject(name2);
+
+                        }catch (IOException ioe){
+                            ioe.printStackTrace();
+                        }
+
+                        try{
+                            FileInputStream s = new FileInputStream(points);
+                            try{
+                                Points points;
+                                fromPointsFile = new ObjectInputStream(s);
+                                for(;;){
+                                    points = (Points)fromPointsFile.readObject();
+                                    System.out.print(points);
+                                }
+                            }catch (EOFException eof){
+                                s.close();
+                            }
+                        }catch (IOException io){
+                            io.printStackTrace();
+                        }
+                    }
+                }catch (ClassNotFoundException cl){
+                    cl.printStackTrace();
                 }catch (EOFException eof) {
                     f.close();
                 }
@@ -102,13 +133,20 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             }
         }else{
             try {
-                createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
-                createNewFile.close();
+                toFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                toPointsFile = new ObjectOutputStream(new FileOutputStream(points, true));
+                toFile.close();
+                toPointsFile.close();
+                writeRanksFromFile(window);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+
+
+
 
     private void listMatches(){
         String name = mainFrame.getDisplayPanel().getSearchArea().getText();
@@ -137,8 +175,10 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             }
         }else{
             try {
-                createNewFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
-                createNewFile.close();
+                toFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                toPointsFile = new ObjectOutputStream(new FileOutputStream(points, true));
+                toPointsFile.close();
+                toFile.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
