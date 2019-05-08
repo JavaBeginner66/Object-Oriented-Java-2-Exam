@@ -120,8 +120,10 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                     FileInputStream s = new FileInputStream(points);
                     try{
                         fromPointsFile = new ObjectInputStream(s);
+                            for(int i = 0; i<namePoints.size(); i++){
+                                window.getChildren().addAll(new Label(namePoints.toString()));
+                            }
 
-                            window.getChildren().addAll(new Label(namePoints.toString()));
 
                 }catch (EOFException eof){
                     s.close();
