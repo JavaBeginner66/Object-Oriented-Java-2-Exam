@@ -12,9 +12,11 @@ import java.util.TreeMap;
 public class ListViewController implements EventHandler<MouseEvent> {
 
     private MainFrame mainFrame;
+    private BoardManager boardManager;
 
-    public ListViewController(MainFrame mainFrame){
+    public ListViewController(MainFrame mainFrame, BoardManager boardManager){
         this.mainFrame = mainFrame;
+        this.boardManager = boardManager;
     }
 
     @Override
@@ -35,6 +37,6 @@ public class ListViewController implements EventHandler<MouseEvent> {
     }
 
     private void initializeChessBoard(MainFrame mainFrame){
-        BoardManager board = new BoardManager(mainFrame);
+        boardManager.createBoard();
     }
 }

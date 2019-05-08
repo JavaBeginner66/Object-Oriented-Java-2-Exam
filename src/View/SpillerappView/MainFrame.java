@@ -1,5 +1,6 @@
 package View.SpillerappView;
 
+import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.Interface.GameEngine;
 import javafx.scene.layout.BorderPane;
 
@@ -15,9 +16,9 @@ public class MainFrame extends BorderPane {
         this.setCenter(chessPanel = new ChessPanel());
     }
 
-    public void addListeners(GameEngine engine){
-        displayPanel.addListeners(this, engine);
-        navigationPanel.addListeners(this, engine);
+    public void addListeners(GameEngine engine, BoardManager boardManager){
+        displayPanel.addListeners(this, engine, boardManager);
+        navigationPanel.addListeners(this, engine, boardManager);
     }
 
     /* Get methods */

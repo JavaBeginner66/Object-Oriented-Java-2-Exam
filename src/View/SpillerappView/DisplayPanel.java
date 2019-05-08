@@ -3,6 +3,7 @@ package View.SpillerappView;
 import Controller.SpillerappController.DisplayPanelController;
 import Controller.SpillerappController.ListViewController;
 import Model.AdmappModel.FinalChessObject;
+import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.Interface.GameEngine;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -50,9 +51,9 @@ public class DisplayPanel extends VBox {
         this.getChildren().addAll(rank, searchField, matchesView, movesView);
     }
 
-    public void addListeners(MainFrame mainFrame, GameEngine gameEngine){
+    public void addListeners(MainFrame mainFrame, GameEngine gameEngine, BoardManager boardManager){
         DisplayPanelController listener = new DisplayPanelController(mainFrame, gameEngine);
-        ListViewController listener2 = new ListViewController(mainFrame);
+        ListViewController listener2 = new ListViewController(mainFrame, boardManager);
         rank.setOnAction(listener);
         search.setOnAction(listener);
         matches.setOnMouseClicked(listener2);

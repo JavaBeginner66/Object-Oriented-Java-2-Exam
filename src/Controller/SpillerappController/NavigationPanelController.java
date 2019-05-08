@@ -2,6 +2,7 @@ package Controller.SpillerappController;
 
 import Model.AdmappModel.FinalChessObject;
 import Model.AdmappModel.MoveDescriptionObject;
+import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.Interface.GameEngine;
 import View.SpillerappView.MainFrame;
 import javafx.event.ActionEvent;
@@ -14,12 +15,14 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
 
     private MainFrame mainFrame;
     private GameEngine gameEngine;
+    private BoardManager boardManager;
 
     public static int moveCount = 1;
 
-    public NavigationPanelController(MainFrame mainFrame, GameEngine gameEngine){
+    public NavigationPanelController(MainFrame mainFrame, GameEngine gameEngine, BoardManager boardManager){
         this.mainFrame = mainFrame;
         this.gameEngine = gameEngine;
+        this.boardManager = boardManager;
     }
 
     @Override
@@ -42,7 +45,11 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
     private void nextMove(){
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
         TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
-        gameEngine.findPiece(moves.get(moveCount).getMove());
+        try {
+            boardManager.findPiece(moves.get(moveCount).getMove());
+        }catch (NullPointerException e){
+            System.out.print("Ingen flere trekk");
+        }
         moveCount++;
     }
 

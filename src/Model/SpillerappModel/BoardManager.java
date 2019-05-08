@@ -12,14 +12,17 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class BoardManager implements GameEngine {
+public class BoardManager extends GameEngineImpl {
 
     private ArrayList<ChessCell> chessCells;
 
-   // private final String k;
+    private MainFrame mainFrame;
 
     public BoardManager(MainFrame mainFrame){
+        this.mainFrame = mainFrame;
+    }
 
+    public void createBoard(){
         chessCells = new ArrayList<>();
         ChessCell cell;
         int colorCount = 1;
@@ -37,27 +40,31 @@ public class BoardManager implements GameEngine {
     }
 
     @Override
-    public void movePiece(String move){
-        System.out.print("yo");
+    public void findPiece(String move){
+
         if(true) {
 
             //if WHITE_TURN
             if (Character.isUpperCase(move.charAt(0))) {
                 // Brikken er ikke en bonde
 
-
-            } else if (move.length() == 2) {
+                System.out.print("Big");
+            } else if (move.length() == 3) {
                 // Bonde beveger seg skrått (Her kan programmet finne 2 bønder?)
                 // Sjekk forrige trekk fra samme brikken?
-
+                System.out.print("skrå");
             } else {
+
                 //gå gjennom alle bønder som har en valid posisjon
                 for (int i = 0; i < chessCells.size(); i++) {
                     int number = chessCells.get(i).getPosition().charAt(1);
                     char letter = chessCells.get(i).getPosition().charAt(0);
                     number++;
-                    String newMove = letter + number + "";
+                    char newNumber = (char)number;
+                    String newMove =  "" + letter + newNumber;
+                    //System.out.println(move + " " + newMove);
                     if (move.equals(newMove)) {
+
                         // Bonde funnet
                         movePiece(chessCells.get(i).getPosition(), move);
                     }
@@ -68,6 +75,11 @@ public class BoardManager implements GameEngine {
     Først finn ut hvilken brikke trekket gjelder
     sjekk moven opp mot alle mulige plasser tabellen. Om den blir funnet,
      */
+    }
+
+    private void movePiece(String oldPosition, String newPosition){
+        System.out.println("Moving piece from " + oldPosition + " to " + newPosition);
+
     }
 
     public ArrayList<ChessCell> getChessCells() {

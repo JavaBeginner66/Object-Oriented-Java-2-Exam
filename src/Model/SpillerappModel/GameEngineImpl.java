@@ -13,9 +13,11 @@ public class GameEngineImpl implements GameEngine {
     public GameEngineImpl(CallbackGUI callbackGUI){
         this.callbackGUI = callbackGUI;
     }
+     public GameEngineImpl(){
+
+     }
 
     @Override
-    public void movePiece(String move) {
-
+    public void findPiece(String move) {
     }
 }

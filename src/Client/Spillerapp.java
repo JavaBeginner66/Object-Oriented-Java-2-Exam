@@ -1,5 +1,6 @@
 package Client;
 
+import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.GameEngineImpl;
 import Model.SpillerappModel.Interface.GameEngine;
 import View.SpillerappView.MainFrame;
@@ -17,8 +18,9 @@ public class Spillerapp extends Application {
         final MainFrame mainFrame = new MainFrame();
         /* Model and GUI callback*/
         final GameEngine gameEngine = new GameEngineImpl(new CallbackGUI(mainFrame));
+
         /* Listeners */
-        mainFrame.addListeners(gameEngine);
+        mainFrame.addListeners(gameEngine, new BoardManager(mainFrame));
 
 
         Scene scene = new Scene(mainFrame, 1030, 700);
