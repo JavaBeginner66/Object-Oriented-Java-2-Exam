@@ -11,6 +11,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -28,6 +29,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     private ObjectOutputStream toFile;
     private ObjectInputStream fromPointsFile;
     private ObjectOutputStream toPointsFile;
+    private ObjectInputStream fromMatchFile;
 
 
     public DisplayPanelController(MainFrame mainFrame, GameEngine gameEngine){
@@ -114,7 +116,7 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                                 fromPointsFile = new ObjectInputStream(s);
                                 for(;;){
                                     points = (Points)fromPointsFile.readObject();
-                                    System.out.print(points);
+                                    window.getChildren().addAll(new Label(points.toString()));
                                 }
                             }catch (EOFException eof){
                                 s.close();
@@ -158,8 +160,8 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                     FinalChessObject chessObject;
                     mainFrame.getDisplayPanel().getMatches().getItems().clear();
                     for (; ;) {
-                        fromFile = new ObjectInputStream(f);
-                        chessObject = (FinalChessObject) fromFile.readObject();
+                        fromMatchFile = new ObjectInputStream(f);
+                        chessObject = (FinalChessObject) fromMatchFile.readObject();
                         if(name.equals(chessObject.getMatchResult().getMatchInfo().getName1()) ||
                             name.equals(chessObject.getMatchResult().getMatchInfo().getName2())){
                             mainFrame.getDisplayPanel().getMatches().getItems().addAll(chessObject);
@@ -176,9 +178,11 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         }else{
             try {
                 toFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                /*
                 toPointsFile = new ObjectOutputStream(new FileOutputStream(points, true));
                 toPointsFile.close();
                 toFile.close();
+                */
             } catch (IOException e) {
                 e.printStackTrace();
             }
