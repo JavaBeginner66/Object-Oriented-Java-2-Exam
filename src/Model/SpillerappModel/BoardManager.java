@@ -47,11 +47,9 @@ public class BoardManager extends JointClass {
             if (Character.isUpperCase(move.charAt(0))) {
                 // Brikken er ikke en bonde
 
-                System.out.print("Big");
             } else if (move.length() == 3) {
                 // Bonde beveger seg skrått (Her kan programmet finne 2 bønder?)
                 // Sjekk forrige trekk fra samme brikken?
-                System.out.print("skrå");
             } else {
                 for (int i = 0; i < chessCells.size(); i++) {
                     int number = chessCells.get(i).getPosition().charAt(1);
@@ -69,11 +67,9 @@ public class BoardManager extends JointClass {
             if (Character.isUpperCase(move.charAt(0))) {
                 // Brikken er ikke en bonde
 
-                System.out.print("Big");
             } else if (move.length() == 3) {
                 // Bonde beveger seg skrått (Her kan programmet finne 2 bønder?)
                 // Sjekk forrige trekk fra samme brikken?
-                System.out.print("skrå");
             } else {
 
                 //gå gjennom alle bønder som har en valid posisjon
