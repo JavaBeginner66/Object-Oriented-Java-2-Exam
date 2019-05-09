@@ -4,6 +4,12 @@ import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.Interface.GameEngine;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Hoved panel-klasse som har ansvar for å
+ * initialisere alle andre panel
+ * Blir også brukt som en referanse for å sende listeners videre
+ */
+
 public class MainFrame extends BorderPane {
 
     private final DisplayPanel displayPanel;

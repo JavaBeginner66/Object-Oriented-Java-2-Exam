@@ -6,6 +6,7 @@ public class CallbackGUI {
 
     /**
      * Referanseklasse
+     * (Større planer i utgangspunktet)
      */
 
     private MainFrame mainFrame;

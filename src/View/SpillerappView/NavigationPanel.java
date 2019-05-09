@@ -8,6 +8,11 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+/**
+ * Panel-klasse som har ansvar for å sette opp
+ * navigasjons-verktøy for sjakkbordet
+ */
+
 public class NavigationPanel extends HBox implements Callback {
 
     private Button autoMove;

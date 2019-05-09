@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 /**
  * Hoved panel klassen som initialiserer alle andre panel
+ * Blir også brukt som en referanseklasse for å sende
+ * listeners videre
  */
 
 public class MainFrame extends GridPane {

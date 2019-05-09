@@ -6,6 +6,10 @@ import javafx.scene.layout.GridPane;
 
 import java.util.TreeMap;
 
+/**
+ * Panel-klasse som har ansvar for å holde på sjakkbrett komponenter
+ */
+
 public class ChessPanel extends GridPane {
 
     public static final String[] chessPositions = {"a8", "a7", "a6", "a5", "a4", "a3", "a2", "a1",

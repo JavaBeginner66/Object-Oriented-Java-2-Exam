@@ -14,6 +14,10 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 
+/**
+ * Panel-klasse som har ansvar for Rangering knapp,
+ * søke-knapp, listview og textarea
+ */
 
 public class DisplayPanel extends VBox implements Callback {
 

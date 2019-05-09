@@ -13,6 +13,15 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Programmet registrer deltakere, parti, resultater og trekk,
+ * og legger de inn på filer som objekter.
+ * Klassen starter og legger ut referanser for applikasjonen
+ *
+ * @version 1.0
+ *  * @since 0.9.05.2019
+ */
+
 
 public class Admapp extends Application {
 
@@ -23,7 +32,7 @@ public class Admapp extends Application {
         final MainFrame mainFrame = new MainFrame();
         /* Model and GUI callback*/
         final Engine engine = new EngineImpl(new CallbackGUI(mainFrame));
-        /* Listeners */
+        /* Listeners (EventHandlers)*/
         mainFrame.addListeners(engine);
 
 
