@@ -87,6 +87,9 @@ public class RegisterMovePanel extends VBox {
         moveComment.setMinWidth(200);
         matchResult.setMinWidth(200);
 
+        saveAll.setDisable(true);
+        saveMove.setDisable(true);
+
         moveComment.getItems().addAll("!!", "!", "!?", "?!", "?", "??");
 
         this.getChildren().addAll(registerMoveLabel, matchResult, moveDescription, moveComment, saveMove,saveAll);
@@ -115,5 +118,9 @@ public class RegisterMovePanel extends VBox {
 
     public ComboBox<MatchResult> getMatchResult() {
         return matchResult;
+    }
+
+    public Button getSaveMove() {
+        return saveMove;
     }
 }

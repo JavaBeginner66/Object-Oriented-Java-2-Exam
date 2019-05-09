@@ -75,6 +75,8 @@ public class ResultPanel extends VBox {
         resultBox.setMinWidth(200);
         chooseMatch.setMinWidth(200);
 
+        register.setDisable(true);
+
         this.getChildren().addAll(resultLabel, chooseMatch, resultBox, register);
     }
 

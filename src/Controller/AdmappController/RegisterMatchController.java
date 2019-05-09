@@ -5,6 +5,8 @@ import Model.AdmappModel.Interface.Engine;
 import View.AdmappView.MainFrame;
 import View.AdmappView.RegisterMatchPanel;
 import View.AdmappView.ResultPanel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -15,10 +17,12 @@ import java.io.ObjectOutputStream;
 
 public class RegisterMatchController implements EventHandler<ActionEvent> {
 
-    public static boolean timeCheck = false;
-    public static boolean dayCheck = false;
-    public static boolean monthCheck = false;
-    public static boolean yearCheck = false;
+    private static boolean timeCheck = false;
+    private static boolean dayCheck = false;
+    private static boolean monthCheck = false;
+    private static boolean yearCheck = false;
+    private static boolean person1 = false;
+    private static boolean person2 = false;
 
     private MainFrame mainFrame;
     private Engine engine;
@@ -79,9 +83,23 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
             yearCheck = !newValue.equals("");
             triggerCheck();
         });
+        mainFrame.getRegisterMatchPanel().getParticipant1().valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                person1 = newValue != null;
+                triggerCheck();
+            }
+        });
+        mainFrame.getRegisterMatchPanel().getParticipant2().valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                person2 = newValue != null;
+                triggerCheck();
+            }
+        });
     }
 
     private void triggerCheck(){
-        mainFrame.getRegisterMatchPanel().getRegisterMatch().setDisable(!timeCheck || !dayCheck || !monthCheck || !yearCheck);
+        mainFrame.getRegisterMatchPanel().getRegisterMatch().setDisable(!timeCheck || !dayCheck || !monthCheck || !yearCheck || !person1 || !person2);
     }
 }

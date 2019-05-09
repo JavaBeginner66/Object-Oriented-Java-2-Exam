@@ -6,9 +6,12 @@ import Model.AdmappModel.MoveDescriptionObject;
 import View.AdmappView.MainFrame;
 import View.AdmappView.RegisterMatchPanel;
 import View.AdmappView.RegisterMovePanel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,6 +22,10 @@ import java.util.TreeMap;
 
 public class RegisterMovePanelController implements EventHandler<ActionEvent> {
 
+    private static boolean matchCheck = false;
+    private static boolean moveCheck = false;
+    private static boolean commentCheck = false;
+
     private MainFrame mainFrame;
 
     private TreeMap<Integer, MoveDescriptionObject> moves = new TreeMap<>();
@@ -27,6 +34,8 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
 
     public RegisterMovePanelController(MainFrame mainFrame){
         this.mainFrame = mainFrame;
+
+        checkEmptyFields();
     }
 
     @Override
@@ -55,9 +64,12 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
                   ));
 
       countMapItems++;
-        /* Disable Comboboksen for å ''locke'' inn til objektet*/
+
         mainFrame.getRegisterMovePanel().emptyFields();
-        mainFrame.getRegisterMovePanel().getMatchResult().setDisable(true);
+        if(mainFrame.getRegisterMovePanel().getMatchResult() != null)
+            mainFrame.getRegisterMovePanel().getMatchResult().setDisable(true);
+        mainFrame.getRegisterMovePanel().getSaveAll().setDisable(false);
+
     }
 
     private void saveMatchObjectToFile(){
@@ -73,8 +85,38 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
         }finally {
             mainFrame.getRegisterMovePanel().emptyFields();
             mainFrame.getRegisterMovePanel().getMatchResult().setDisable(false);
+            mainFrame.getRegisterMovePanel().getSaveAll().setDisable(true);
         }
 
+    }
+
+    private void checkEmptyFields(){
+
+        mainFrame.getRegisterMovePanel().getMatchResult().valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                mainFrame.getRegisterMovePanel().getSaveAll().setDisable(true);
+                matchCheck = newValue != null;
+                triggerCheck();
+            }
+        });
+
+        mainFrame.getRegisterMovePanel().getMoveComment().valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                moveCheck = newValue != null;
+                triggerCheck();
+            }
+        });
+        mainFrame.getRegisterMovePanel().getMoveDescription().textProperty().addListener((observable, oldValue, newValue) -> {
+            commentCheck = !newValue.equals("");
+            triggerCheck();
+        });
+    }
+
+    private void triggerCheck(){
+
+        mainFrame.getRegisterMovePanel().getSaveMove().setDisable(!matchCheck || !moveCheck || !commentCheck);
     }
 
 }
