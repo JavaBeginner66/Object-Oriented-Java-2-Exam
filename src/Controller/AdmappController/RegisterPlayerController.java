@@ -10,14 +10,19 @@ import javafx.scene.control.TextField;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+/**
+ * Klassen tar seg av eventen fra ''registrer'' deltaker,
+ * og også generelle disabling/enabling
+ * Får referense fra panel klasse ved nesten samme navn
+ */
 
 public class RegisterPlayerController implements EventHandler<ActionEvent> {
 
     private DataOutputStream toFile;
     private TextField registerName;
-    private MainFrame mainFrame;
-    private Engine engine;
+
+    private final MainFrame mainFrame;
+    private final Engine engine;
 
     public RegisterPlayerController(MainFrame mainFrame, Engine engine, TextField registerName){
         this.mainFrame = mainFrame;
@@ -38,6 +43,9 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
         writeToFile();
     }
 
+    /**
+     * Skriver navn til fil ''deltakere''
+     */
     private void writeToFile(){
 
         try {

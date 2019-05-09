@@ -2,6 +2,12 @@ package Model.AdmappModel;
 
 import java.io.Serializable;
 
+/**
+ * Klassen lagrer info om registrerte partier.
+ * Implementerer Serializable for å kunne bli
+ * skrevet inn/ut av fil som objekt
+ */
+
 public class ChessMatchInfo implements Serializable {
 
 

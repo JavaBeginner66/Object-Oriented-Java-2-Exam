@@ -11,6 +11,11 @@ import javafx.scene.control.Button;
 
 import java.util.TreeMap;
 
+/**
+ * Klassen har ansvar for navigasjons-knapp eventene som tilhører
+ * hvert sjakkbrett
+ */
+
 public class NavigationPanelController implements EventHandler<ActionEvent> {
 
     private MainFrame mainFrame;
@@ -42,7 +47,9 @@ public class NavigationPanelController implements EventHandler<ActionEvent> {
                 break;
         }
     }
-
+    /**
+     * Metoden finner trekk-objektet og det riktige nummeret, og sender det inn til BoardManager
+     */
     private void nextMove(){
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
         TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();

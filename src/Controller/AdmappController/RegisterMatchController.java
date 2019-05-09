@@ -15,6 +15,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+/**
+ * Klassen tar seg av eventen fra ''registrer'' parti,
+ * og også generelle disabling/enabling
+ * Får referense fra panel klasse ved nesten samme navn
+ */
+
 public class RegisterMatchController implements EventHandler<ActionEvent> {
 
     private static boolean timeCheck = false;
@@ -24,8 +30,8 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
     private static boolean person1 = false;
     private static boolean person2 = false;
 
-    private MainFrame mainFrame;
-    private Engine engine;
+    private final MainFrame mainFrame;
+    private final Engine engine;
 
     public RegisterMatchController(MainFrame mainFrame, Engine engine){
         this.mainFrame = mainFrame;
@@ -34,12 +40,14 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
         checkEmptyFields();
     }
 
-    /* Ligger bare en knapp i RegisterPlayerPanel, så slipper å sjekke*/
     @Override
     public void handle(ActionEvent event) {
         writeToFile();
     }
 
+    /**
+     * Metoden skriver parti til filen ''parti''
+     */
     private void writeToFile(){
         ObjectOutputStream toFile;
         String name1 = (String)mainFrame.getRegisterMatchPanel().getParticipant1().getValue();
@@ -65,6 +73,10 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
         }
     }
 
+    /**
+     * Metoden kontrollerer at bruker bare kan trykke ''registrer'' når alle
+     * felt er fylt ut
+     */
     private void checkEmptyFields(){
 
         mainFrame.getRegisterMatchPanel().getTime().textProperty().addListener((observable, oldValue, newValue) -> {

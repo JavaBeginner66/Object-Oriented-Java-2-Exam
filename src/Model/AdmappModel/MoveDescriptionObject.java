@@ -2,6 +2,13 @@ package Model.AdmappModel;
 
 import java.io.Serializable;
 
+/**
+ * Klassen lagrer hvilket trekk som er tatt i tilleg til kvalitetskommentar
+ * i form av to tegn.
+ * Implementerer Serializable for å kunne bli
+ * skrevet inn/ut av fil som objekt
+ */
+
 public class MoveDescriptionObject implements Serializable {
 
 

@@ -3,6 +3,15 @@ package Model.AdmappModel;
 import java.io.Serializable;
 import java.util.TreeMap;
 
+/**
+ * Klassen lagrer info om det endelige objektet.
+ * Implementerer Serializable for å kunne bli
+ * skrevet inn/ut av fil som objekt
+ *
+ * Klassen inneholder to andre store objekt som har
+ * ytterligere opplysninger om partiet
+ */
+
 public class FinalChessObject implements Serializable {
 
     private static final long serialVersionUID = 7524854553255443349L;

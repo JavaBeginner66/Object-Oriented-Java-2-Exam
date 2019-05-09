@@ -8,6 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+/**
+ * Klassen er tatt i bruk som ett sjakk felt.
+ * Blir initialisert 8*8 ganger av BoardManager.
+ */
 
 public class ChessCell extends StackPane {
 
@@ -38,8 +42,8 @@ public class ChessCell extends StackPane {
 
     }
 
+    
     public void addPiecesToBoard(String img){
-        //this.getChildren().removeAll(piece);
         piece = new ImageView( new Image(img));
         this.getChildren().addAll(piece);
     }

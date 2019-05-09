@@ -9,10 +9,15 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.TreeMap;
 
+/**
+ * Klassen har ansvar for å printe ut alle trekk og kommentarer til
+ * objektet bruker trykker på, i tekstfeltet til venstre
+ */
+
 public class ListViewController implements EventHandler<MouseEvent> {
 
-    private MainFrame mainFrame;
-    private BoardManager boardManager;
+    private final MainFrame mainFrame;
+    private final BoardManager boardManager;
 
     public ListViewController(MainFrame mainFrame, BoardManager boardManager){
         this.mainFrame = mainFrame;
@@ -26,6 +31,9 @@ public class ListViewController implements EventHandler<MouseEvent> {
         NavigationPanelController.playerTurn = 1;
     }
 
+    /**
+     * Metoden finner trekk-objektet og printer dem ut i textarea
+     */
     private void listMoves(){
         mainFrame.getDisplayPanel().getMovesDescription().clear();
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();

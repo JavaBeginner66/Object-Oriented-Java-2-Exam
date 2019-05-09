@@ -7,7 +7,12 @@ import View.SpillerappView.MainFrame;
 
 import java.util.ArrayList;
 
-public class BoardManager extends GameEngineImpl {
+/**
+ * Klassen har ansvar for å lage og kontrollere
+ * sjakkbordet
+ */
+
+public class BoardManager extends JointClass {
 
     private ArrayList<ChessCell> chessCells;
 
@@ -17,6 +22,7 @@ public class BoardManager extends GameEngineImpl {
         this.mainFrame = mainFrame;
     }
 
+    @Override
     public void createBoard(){
         chessCells = new ArrayList<>();
         ChessCell cell;
@@ -47,17 +53,13 @@ public class BoardManager extends GameEngineImpl {
                 // Sjekk forrige trekk fra samme brikken?
                 System.out.print("skrå");
             } else {
-
-                //gå gjennom alle bønder som har en valid posisjon
                 for (int i = 0; i < chessCells.size(); i++) {
                     int number = chessCells.get(i).getPosition().charAt(1);
                     char letter = chessCells.get(i).getPosition().charAt(0);
                     number++;
                     char newNumber = (char)number;
                     String newMove =  "" + letter + newNumber;
-                    //System.out.println(move + " " + newMove);
                     if (move.equals(newMove)) {
-
                         // Bonde funnet
                         movePiece(i, chessCells.get(i).getPosition(), move);
                     }
@@ -92,8 +94,8 @@ public class BoardManager extends GameEngineImpl {
         }
     }
 
-
-    private void movePiece(int cell, String oldPosition, String newPosition) {
+    @Override
+    public void movePiece(int cell, String oldPosition, String newPosition) {
         System.out.println("Moving piece from " + oldPosition + " to " + newPosition);
         chessCells.get(cell).removePiece();
         if (NavigationPanelController.playerTurn == 1) {

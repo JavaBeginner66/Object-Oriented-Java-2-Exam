@@ -6,18 +6,23 @@ import View.SpillerappView.Observer.CallbackGUI;
 
 import java.util.TreeMap;
 
-public class GameEngineImpl implements GameEngine {
+public class JointClass implements GameEngine{
 
     private CallbackGUI callbackGUI;
 
-    public GameEngineImpl(CallbackGUI callbackGUI){
+    public JointClass(CallbackGUI callbackGUI){
         this.callbackGUI = callbackGUI;
     }
-     public GameEngineImpl(){
+     public JointClass(){
 
      }
 
     @Override
-    public void findPiece(String move) {
-    }
+    public void findPiece(String move) { }
+
+    @Override
+    public void createBoard() { }
+
+    @Override
+    public void movePiece(int cell, String oldPosition, String newPosition) { }
 }

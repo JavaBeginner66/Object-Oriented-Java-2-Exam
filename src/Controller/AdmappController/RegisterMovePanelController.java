@@ -20,13 +20,19 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 
+/**
+ * Klassen tar seg av registrering av trekk, i tilleg til
+ * å skrive inn det endelige objektet til fil
+ * Får referense fra panel klasse ved nesten samme navn
+ */
+
 public class RegisterMovePanelController implements EventHandler<ActionEvent> {
 
     private static boolean matchCheck = false;
     private static boolean moveCheck = false;
     private static boolean commentCheck = false;
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
     private TreeMap<Integer, MoveDescriptionObject> moves = new TreeMap<>();
 
@@ -72,6 +78,9 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
 
     }
 
+    /**
+     * Skriver endelig objekt med parti + trekk til fil ''oversikt''.
+     */
     private void saveMatchObjectToFile(){
         countMapItems = 1;
         ObjectOutputStream toFile;
@@ -89,7 +98,9 @@ public class RegisterMovePanelController implements EventHandler<ActionEvent> {
         }
 
     }
-
+    /**
+     * Sjekker om bruker har valide verdier i felt (ikke null)
+     */
     private void checkEmptyFields(){
 
         mainFrame.getRegisterMovePanel().getMatchResult().valueProperty().addListener(new ChangeListener() {

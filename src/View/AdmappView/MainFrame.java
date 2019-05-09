@@ -18,10 +18,10 @@ public class MainFrame extends GridPane {
 
     private static final String KOPI_FIL = "sikkerhetskopi.rtf";
 
-    private RegisterPlayerPanel registerPlayerPanel;
-    private RegisterMatchPanel registerMatchPanel;
-    private ResultPanel resultPanel;
-    private RegisterMovePanel registerMovePanel;
+    private final RegisterPlayerPanel registerPlayerPanel;
+    private final RegisterMatchPanel registerMatchPanel;
+    private final ResultPanel resultPanel;
+    private final RegisterMovePanel registerMovePanel;
 
     public MainFrame(){
         this.setPadding(new Insets(10));

@@ -17,10 +17,15 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Klassen tar seg av eventer som kommer fra panelet (Rangering og Søk)
+ * Får referense fra panel klasse ved nesten samme navn
+ */
+
 public class DisplayPanelController implements EventHandler<ActionEvent> {
 
-    private MainFrame mainFrame;
-    private GameEngine gameEngine;
+    private final MainFrame mainFrame;
+    private final GameEngine gameEngine;
 
     public final static File points = new File("poeng");
 
@@ -52,7 +57,9 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     }
 
 
-
+    /**
+     * Metoden legger opp et nytt vindu for rangeringer
+     */
     private void listRanks(){
 
         VBox ranksWindow = new VBox();
@@ -72,6 +79,10 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         newWindow.show();
     }
 
+    /**
+     * Metoden skriver rangeringer fra fil over i nytt vindu.
+     * Det blir også telt opp poeng for hver person, og sortert på antall poeng
+     */
     private void writeRanksFromFile(VBox window) {
         ArrayList<FinalChessObject> chessObjects = new ArrayList<>();
         if (RegisterMovePanel.matchOverview.exists() && points.exists()) {
@@ -146,7 +157,10 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             }
         }
 
-
+    /**
+     * Metoden blir hovedsakelig brukt for å forkorte metoden ''writeRanksFromFile'' ved
+     * å bruke parameter-variabler
+     */
     private void givePoints(MatchResult result, Map<String, Double> namePoints) {
         switch (result.getResult()) {
             case "1-0":
@@ -172,6 +186,11 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
 
 
 
+    /**
+     * Metoden leser objekt fra fil ''oversikt'' ut på listview til panelet.
+     * Bruker kan trykke på et objekt og få opp et sjakkbrett
+     * som representerer objektet og alle trekk det inneholder
+     */
     private void listMatches(){
         String name = mainFrame.getDisplayPanel().getSearchArea().getText();
 

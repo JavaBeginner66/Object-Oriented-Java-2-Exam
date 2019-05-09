@@ -6,9 +6,9 @@ import javafx.scene.layout.BorderPane;
 
 public class MainFrame extends BorderPane {
 
-    private DisplayPanel displayPanel;
-    private NavigationPanel navigationPanel;
-    private ChessPanel chessPanel;
+    private final DisplayPanel displayPanel;
+    private final NavigationPanel navigationPanel;
+    private final ChessPanel chessPanel;
 
     public MainFrame(){
         this.setLeft(displayPanel = new DisplayPanel());

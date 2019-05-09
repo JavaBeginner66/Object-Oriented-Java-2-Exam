@@ -3,11 +3,12 @@ package View.SpillerappView;
 import Controller.SpillerappController.NavigationPanelController;
 import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.Interface.GameEngine;
+import View.SpillerappView.Observer.Interface.Callback;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-public class NavigationPanel extends HBox {
+public class NavigationPanel extends HBox implements Callback {
 
     private Button autoMove;
     private Button previous;
@@ -20,8 +21,8 @@ public class NavigationPanel extends HBox {
 
         componentSetup();
     }
-
-    private void componentSetup(){
+    @Override
+    public void componentSetup(){
         autoMove = new Button("Auto");
         previous = new Button("Forrige");
         next = new Button("Neste");

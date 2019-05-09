@@ -13,12 +13,17 @@ import javafx.event.EventHandler;
 
 import java.io.*;
 
+/**
+ * Klassen tar seg av events som kommer av ''registrer'' resultat.
+ * Får referense fra panel klasse ved nesten samme navn
+ */
+
 public class ResultPanelController implements EventHandler<ActionEvent> {
 
     private static boolean matchCheck = false;
     private static boolean resultCheck = false;
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
     public ResultPanelController(MainFrame mainFrame){
         this.mainFrame = mainFrame;
@@ -31,6 +36,9 @@ public class ResultPanelController implements EventHandler<ActionEvent> {
         writeToFile();
     }
 
+    /**
+     * Metoden skriver resultat til fil ''result''
+     */
     private void writeToFile() {
         ObjectOutputStream toFile;
         MatchResult result = new MatchResult((ChessMatchInfo)mainFrame.getResultPanel().getChooseMatch().getValue(),
@@ -50,6 +58,9 @@ public class ResultPanelController implements EventHandler<ActionEvent> {
         }
     }
 
+    /**
+     * Metoden sørger for at comboboksen ikke er null når bruker trykker registrer
+     */
     private void checkEmptyFields(){
         mainFrame.getResultPanel().getChooseMatch().valueProperty().addListener(new ChangeListener() {
             @Override

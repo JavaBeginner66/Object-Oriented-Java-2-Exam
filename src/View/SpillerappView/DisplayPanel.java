@@ -5,6 +5,7 @@ import Controller.SpillerappController.ListViewController;
 import Model.AdmappModel.FinalChessObject;
 import Model.SpillerappModel.BoardManager;
 import Model.SpillerappModel.Interface.GameEngine;
+import View.SpillerappView.Observer.Interface.Callback;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -14,7 +15,7 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 
 
-public class DisplayPanel extends VBox {
+public class DisplayPanel extends VBox implements Callback {
 
     private Button rank;
     private TextField searchArea;
@@ -28,8 +29,8 @@ public class DisplayPanel extends VBox {
 
         componentSetup();
     }
-
-    private void componentSetup(){
+    @Override
+    public void componentSetup(){
         HBox searchField = new HBox();
 
         rank = new Button("Rangering");

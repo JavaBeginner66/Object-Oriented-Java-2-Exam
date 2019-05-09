@@ -5,11 +5,11 @@ import View.AdmappView.Observer.Interface.Callback;
 
 public class CallbackGUI implements Callback {
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
     public CallbackGUI(MainFrame mainFrame){
         this.mainFrame = mainFrame;
-        //update();
+
     }
 
     @Override
