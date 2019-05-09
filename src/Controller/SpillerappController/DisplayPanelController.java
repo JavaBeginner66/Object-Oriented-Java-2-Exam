@@ -56,7 +56,9 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     private void listRanks(){
 
         VBox ranksWindow = new VBox();
-        Label r =  new Label("Rangeringer: ");
+        Label r =  new Label("Rangeringer");
+        r.getStyleClass().add("tittel");
+        r.setMinWidth(280);
         r.setPadding(new Insets(5,0,20,0));
         ranksWindow.getChildren().addAll(r);
         Scene rankScene = new Scene(ranksWindow, 300, 500);
