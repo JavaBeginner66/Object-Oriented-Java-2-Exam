@@ -110,23 +110,25 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
             try{
                 FileInputStream s = new FileInputStream(points);
                 try{
-                    fromPointsFile = new ObjectInputStream(s);
+                    FileInputStream s = new FileInputStream(points);
+                    try{
+                        fromPointsFile = new ObjectInputStream(s);
 
 
-                    Set<Map.Entry<String, Double>> set = namePoints.entrySet();
-                    List<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String, Double>>(
-                            set);
+                        Set<Map.Entry<String, Double>> set = namePoints.entrySet();
+                        List<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String, Double>>(
+                                set);
 
-                    Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
-                        public int compare(Map.Entry<String, Double> o1,
-                                           Map.Entry<String, Double> o2) {
-                            return o2.getValue().compareTo(o1.getValue());
-                        }
-                    });
+                        Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+                            public int compare(Map.Entry<String, Double> o1,
+                                               Map.Entry<String, Double> o2) {
+                                return o2.getValue().compareTo(o1.getValue());
+                            }
+                        });
 
-                    for(Map.Entry<String, Double> entry : list){
-                        window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
-                    }
+                            for(Map.Entry<String, Double> entry : list){
+                                window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
+                            }
 
                 }catch (EOFException eof){
                     s.close();
