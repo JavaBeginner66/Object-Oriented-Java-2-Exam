@@ -100,6 +100,14 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
     }
 
     private void triggerCheck(){
-        mainFrame.getRegisterMatchPanel().getRegisterMatch().setDisable(!timeCheck || !dayCheck || !monthCheck || !yearCheck || !person1 || !person2);
+            mainFrame.getRegisterMatchPanel().getRegisterMatch().setDisable(!timeCheck || !dayCheck || !monthCheck || !yearCheck
+                    || !person1 || !person2 || checkDuplicateNames());
+    }
+
+    private boolean checkDuplicateNames(){
+        String name1 = (String)mainFrame.getRegisterMatchPanel().getParticipant1().getValue();
+        String name2 = (String)mainFrame.getRegisterMatchPanel().getParticipant2().getValue();
+        return (name1.equals(name2));
+
     }
 }
