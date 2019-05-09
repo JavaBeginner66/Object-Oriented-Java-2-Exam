@@ -7,6 +7,7 @@ import View.AdmappView.RegisterMatchPanel;
 import View.AdmappView.ResultPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,12 +15,19 @@ import java.io.ObjectOutputStream;
 
 public class RegisterMatchController implements EventHandler<ActionEvent> {
 
+    public static boolean timeCheck = false;
+    public static boolean dayCheck = false;
+    public static boolean monthCheck = false;
+    public static boolean yearCheck = false;
+
     private MainFrame mainFrame;
     private Engine engine;
 
     public RegisterMatchController(MainFrame mainFrame, Engine engine){
         this.mainFrame = mainFrame;
         this.engine = engine;
+
+        checkEmptyFields();
     }
 
     /* Ligger bare en knapp i RegisterPlayerPanel, så slipper å sjekke*/
@@ -51,5 +59,29 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
             /* Oppdater matchliste*/
             mainFrame.getResultPanel().update();
         }
+    }
+
+    private void checkEmptyFields(){
+
+        mainFrame.getRegisterMatchPanel().getTime().textProperty().addListener((observable, oldValue, newValue) -> {
+            timeCheck = !newValue.equals("");
+            triggerCheck();
+        });
+        mainFrame.getRegisterMatchPanel().getDay().textProperty().addListener((observable, oldValue, newValue) -> {
+            dayCheck = !newValue.equals("");
+            triggerCheck();
+        });
+        mainFrame.getRegisterMatchPanel().getMonth(.textProperty().addListener((observable, oldValue, newValue) -> {
+            monthCheck = !newValue.equals("");
+            triggerCheck();
+        });
+        mainFrame.getRegisterMatchPanel().getYear().textProperty().addListener((observable, oldValue, newValue) -> {
+            yearCheck = !newValue.equals("");
+            triggerCheck();
+        });
+    }
+
+    private void triggerCheck(){
+        mainFrame.getRegisterMatchPanel().getRegisterMatch().setDisable(!timeCheck || !dayCheck || !monthCheck || !yearCheck);
     }
 }

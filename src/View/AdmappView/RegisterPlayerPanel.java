@@ -30,11 +30,13 @@ public class RegisterPlayerPanel extends VBox {
         Label nameLabel = new Label("Navn");
         registerName = new TextField();
         register = new Button("Registrer");
+        register.setDisable(true);
 
         nameLabel.setMinWidth(200);
         registerName.setMinWidth(200);
 
         this.getChildren().addAll(nameLabel, registerName, register);
+
     }
 
     public void addListeners(MainFrame mainFrame, Engine engine){

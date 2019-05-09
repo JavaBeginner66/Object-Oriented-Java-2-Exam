@@ -23,6 +23,13 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
         this.mainFrame = mainFrame;
         this.engine = engine;
         this.registerName = registerName;
+
+        mainFrame.getRegisterPlayerPanel().getRegisterName().textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.equals(""))
+                mainFrame.getRegisterPlayerPanel().getRegister().setDisable(false);
+            else
+                mainFrame.getRegisterPlayerPanel().getRegister().setDisable(true);
+        });
     }
 
     /* Ligger bare en knapp i RegisterPlayerPanel, så slipper å sjekke*/

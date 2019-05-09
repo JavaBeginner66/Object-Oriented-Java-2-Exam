@@ -41,6 +41,8 @@ public class RegisterMatchPanel extends VBox {
         month = new TextField();
         year = new TextField();
 
+        registerMatch.setDisable(true);
+
         participant1.setPromptText("Velg navn");
         participant2.setPromptText("Velg navn");
         time.setPromptText("Klokkeslett");
@@ -127,5 +129,7 @@ public class RegisterMatchPanel extends VBox {
         return year;
     }
 
-
+    public Button getRegisterMatch() {
+        return registerMatch;
+    }
 }
