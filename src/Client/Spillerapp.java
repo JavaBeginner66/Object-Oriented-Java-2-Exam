@@ -12,7 +12,10 @@ import javafx.stage.Stage;
 /**
  * Programmet leser inn objekter fra fil med deltakere,
  * parti, resultat og trekk som er registrert via admapp applikasjonen.
- * Bruker kan se en rangering, og 
+ * Bruker kan se en rangering, en liste over parti spilt, og hvilke trekk som
+ * er tatt i en numerert liste. Bruker skal også i beste fall
+ * få opp et sjakkbrett og kunne navigere gjennom trekka.
+ *
  * Klassen starter og legger ut referanser for applikasjonen
  *
  * @version 1.0

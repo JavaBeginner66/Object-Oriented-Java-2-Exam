@@ -26,4 +26,9 @@ public class CallbackGUI implements Callback {
         */
 
     }
+
+    @Override
+    public void componentSetup() {
+
+    }
 }

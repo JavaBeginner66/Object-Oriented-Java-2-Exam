@@ -35,12 +35,14 @@ public class ListViewController implements EventHandler<MouseEvent> {
      * Metoden finner trekk-objektet og printer dem ut i textarea
      */
     private void listMoves(){
-        mainFrame.getDisplayPanel().getMovesDescription().clear();
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
+        //System.out.println(c.getMoves());
         try {
             TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
+            mainFrame.getDisplayPanel().getMovesDescription().clear();
             for(int i = 1; i<=moves.size(); i++) {
                 mainFrame.getDisplayPanel().getMovesDescription().appendText(i + ": " + moves.get(i) + "\n");
+                //System.out.print(moves.size());
             }
             initializeChessBoard(mainFrame);
         }catch (NullPointerException e){
