@@ -71,7 +71,7 @@ public class RegisterMatchController implements EventHandler<ActionEvent> {
             dayCheck = !newValue.equals("");
             triggerCheck();
         });
-        mainFrame.getRegisterMatchPanel().getMonth(.textProperty().addListener((observable, oldValue, newValue) -> {
+        mainFrame.getRegisterMatchPanel().getMonth().textProperty().addListener((observable, oldValue, newValue) -> {
             monthCheck = !newValue.equals("");
             triggerCheck();
         });
