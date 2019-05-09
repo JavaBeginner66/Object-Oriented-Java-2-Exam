@@ -10,6 +10,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.*;
 
+/**
+ * Panel-klasse som har ansvar for registrer parti komponenter
+ */
 
 public class RegisterMatchPanel extends VBox implements Callback {
 
@@ -31,8 +34,8 @@ public class RegisterMatchPanel extends VBox implements Callback {
         componentSetup();
 
     }
-
-    private void componentSetup(){
+    @Override
+    public void componentSetup(){
         Label matchLabel = new Label("Registrer Sjakkparti");
         participant1 = new ComboBox<String>();
         participant2 = new ComboBox<String>();
@@ -94,6 +97,9 @@ public class RegisterMatchPanel extends VBox implements Callback {
         }
     }
 
+    /**
+     * Metoden resetter TextField felt
+     */
     public void emptyFields(){
         time.setText("");
         day.setText("");

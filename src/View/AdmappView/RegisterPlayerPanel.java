@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 
+/**
+ * Panel-klasse som har ansvar for registrer deltaker komponenter
+ */
 
 public class RegisterPlayerPanel extends VBox implements Callback {
 
@@ -27,7 +30,8 @@ public class RegisterPlayerPanel extends VBox implements Callback {
         componentSetup();
     }
 
-    private void componentSetup(){
+    @Override
+    public void componentSetup(){
         Label nameLabel = new Label("Navn");
         registerName = new TextField();
         register = new Button("Registrer");

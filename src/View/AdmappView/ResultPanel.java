@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.*;
 
+/**
+ * Panel-klasse som har ansvar for registrer parti-resultat komponenter
+ */
 
 public class ResultPanel extends VBox implements Callback {
 
@@ -61,8 +64,8 @@ public class ResultPanel extends VBox implements Callback {
         }
     }
 
-
-    private void componentSetup(){
+    @Override
+    public void componentSetup(){
         Label resultLabel = new Label("Resultat");
         chooseMatch = new ComboBox<ChessMatchInfo>();
         resultBox = new ComboBox<String>();

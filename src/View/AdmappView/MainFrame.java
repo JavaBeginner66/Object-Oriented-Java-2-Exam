@@ -14,6 +14,10 @@ import javafx.stage.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Hoved panel klassen som initialiserer alle andre panel
+ */
+
 public class MainFrame extends GridPane {
 
     private static final String KOPI_FIL = "sikkerhetskopi.rtf";
@@ -41,6 +45,11 @@ public class MainFrame extends GridPane {
         resultPanel.addListeners(this, engine);
     }
 
+    /**
+     * Metoden henter objekt fra IO fil, og skriver
+     * den over til en lesbar rtf hvis bruker
+     * krysser ut programmet
+     */
     public void createCopyFile(Stage stage){
         /* Sikkerhetskopi */
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

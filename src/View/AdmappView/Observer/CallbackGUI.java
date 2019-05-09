@@ -3,6 +3,11 @@ package View.AdmappView.Observer;
 import View.AdmappView.MainFrame;
 import View.AdmappView.Observer.Interface.Callback;
 
+/**
+ * Klassen har ansvar for å kalle på
+ * forskjellige metoder i panel-klasser
+ */
+
 public class CallbackGUI implements Callback {
 
     private final MainFrame mainFrame;

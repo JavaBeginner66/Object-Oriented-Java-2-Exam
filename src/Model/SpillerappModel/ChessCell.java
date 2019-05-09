@@ -42,22 +42,34 @@ public class ChessCell extends StackPane {
 
     }
 
-    
+    /**
+     * Metoden legger til brikker på bordet (startfasen)
+     */
     public void addPiecesToBoard(String img){
         piece = new ImageView( new Image(img));
         this.getChildren().addAll(piece);
     }
 
+    /**
+     * Metoden gir objektet en ny posisjon, og legger til nytt bilde
+     */
     public void addPiece(String newPosition, String img){
         this.position = newPosition;
         piece = new ImageView( new Image(img));
         this.getChildren().addAll(piece);
     }
 
+    /**
+     * Metoden fjerner brikke(Imageview) fra brettet
+     */
     public void removePiece(){
         this.getChildren().clear();
     }
 
+
+    /**
+     * Standard startfase setup av alle brikker
+     */
     private void pieceSetup(){
         switch(position){
             case "a2": case "b2":case "c2": case "d2":case "e2": case "f2":case "g2": case "h2":

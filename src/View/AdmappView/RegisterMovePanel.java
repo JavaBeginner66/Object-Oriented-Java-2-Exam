@@ -14,6 +14,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.*;
 
+/**
+ * Panel-klasse som har ansvar for registrer trekk komponenter
+ */
 
 public class RegisterMovePanel extends VBox implements Callback {
 
@@ -65,12 +68,15 @@ public class RegisterMovePanel extends VBox implements Callback {
         }
 
     }
-
+    /**
+     * Metoden resetter TextField felt
+     */
     public void emptyFields(){
         this.moveDescription.setText("");
     }
 
-    private void componentSetup(){
+    @Override
+    public void componentSetup(){
         Label registerMoveLabel = new Label("Registrer Trekk");
         matchResult = new ComboBox<MatchResult>();
         moveDescription = new TextField();

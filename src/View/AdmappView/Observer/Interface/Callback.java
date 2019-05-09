@@ -11,4 +11,9 @@ public interface Callback {
      * Blir oftest kalt fra controller-klassene
      */
     public void update();
+
+    /**
+     * Legger til alle komponenter panelet skal ha
+     */
+    public void componentSetup();
 }
