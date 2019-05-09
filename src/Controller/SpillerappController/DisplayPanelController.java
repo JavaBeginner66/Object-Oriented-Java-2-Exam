@@ -71,9 +71,9 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
         newWindow.show();
     }
 
-    private void writeRanksFromFile(VBox window){
+    private void writeRanksFromFile(VBox window) {
         ArrayList<FinalChessObject> chessObjects = new ArrayList<>();
-        if(RegisterMovePanel.matchOverview.exists() && points.exists()) {
+        if (RegisterMovePanel.matchOverview.exists() && points.exists()) {
             try {
                 FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
                 try {
@@ -98,20 +98,18 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                 if (namePoints.containsKey(result.getMatchInfo().getName1())) {
                     givePoints(result, namePoints);
 
-                } else{
+                } else {
                     namePoints.put(result.getMatchInfo().getName1(), 0.0);
                 }
                 if (namePoints.containsKey(result.getMatchInfo().getName2())) {
                     givePoints(result, namePoints);
-                } else{
+                } else {
                     namePoints.put(result.getMatchInfo().getName2(), 0.0);
                 }
             }
-            try{
+            try {
                 FileInputStream s = new FileInputStream(points);
-                try{
-                    FileInputStream s = new FileInputStream(points);
-                    try{
+                    try {
                         fromPointsFile = new ObjectInputStream(s);
 
 
@@ -126,28 +124,29 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                             }
                         });
 
-                            for(Map.Entry<String, Double> entry : list){
-                                window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
-                            }
+                        for (Map.Entry<String, Double> entry : list) {
+                            window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
+                        }
 
-                }catch (EOFException eof){
-                    s.close();
-                }
+                    }catch (EOFException eof){
+                        s.close();
+                    }
             }catch (IOException io){
                 io.printStackTrace();
             }
         }else{
-            try {
-                toFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
-                toPointsFile = new ObjectOutputStream(new FileOutputStream(points, true));
-                toFile.close();
-                toPointsFile.close();
-                writeRanksFromFile(window);
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    toFile = new ObjectOutputStream(new FileOutputStream(RegisterMovePanel.matchOverview, true));
+                    toPointsFile = new ObjectOutputStream(new FileOutputStream(points, true));
+                    toFile.close();
+                    toPointsFile.close();
+                    writeRanksFromFile(window);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
+
 
     private void givePoints(MatchResult result, Map<String, Double> namePoints) {
         switch (result.getResult()) {
