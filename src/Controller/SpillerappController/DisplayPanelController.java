@@ -128,7 +128,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                         for (Map.Entry<String, Double> entry : list) {
                             window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
                         }
-
                     }catch (EOFException eof){
                         s.close();
                     }
