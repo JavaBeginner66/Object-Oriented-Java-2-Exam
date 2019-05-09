@@ -1,0 +1,60 @@
+.root {
+	-fx-font-family: "Arial";
+	-fx-font-size: 15px;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-background-color: #ccc;
+}
+
+.panel {
+	-fx-background-color: #2e3136;
+	-fx-padding: 10;
+	-fx-border-color: #00a1c9;
+	-fx-border-width: 2;
+}
+
+.label{
+	-fx-font-family: "Arial";
+	-fx-background-color: #1c1d1f;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-font-size: 18px;
+	-fz-font-weight: 600;
+	-fx-text-fill: white;
+	-fx-padding: 10 0 10 0;
+	-fx-border-color: #00a1c9;
+	-fx-border-width: 0 0 2 0;
+}
+
+.text-field {
+	-fx-prompt-text-fill: #ccc;
+	-fx-text-fill: white;
+	-fx-border-radius: 0;
+	-fx-background-color: #2e3136;
+	-fx-border-color: #ccc;
+	-fx-border-width: 2;
+}
+
+.text-field:focused {
+	-fx-prompt-text-fill: transparent;
+	-fx-border-color: #00a1c9;
+}
+
+.button {
+	-fx-text-fill: white;
+	-fx-background-color: black;
+	-fx-border-radius: 3;
+	-fx-border-color: black;
+	-fx-border-width: 2;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-alignment: center;
+}
+
+.button:hover {
+	-fx-text-fill: black;
+	-fx-background-color: white;
+	-fx-border-color: #00a1c9;
+	-fx-border-width: 2;
+	-fx-cursor: hand;
+}

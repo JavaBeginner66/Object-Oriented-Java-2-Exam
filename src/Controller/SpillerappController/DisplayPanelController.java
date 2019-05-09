@@ -7,6 +7,7 @@ import View.AdmappView.RegisterMovePanel;
 import View.SpillerappView.MainFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,13 +56,16 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
     private void listRanks(){
 
         VBox ranksWindow = new VBox();
+        Label r =  new Label("Rangeringer: ");
+        r.setPadding(new Insets(5,0,20,0));
+        ranksWindow.getChildren().addAll(r);
         Scene rankScene = new Scene(ranksWindow, 300, 500);
         rankScene.getStylesheets().add("CSS/rangering.css");
 
         Stage newWindow = new Stage();
 
         newWindow.setScene(rankScene);
-
+        newWindow.setTitle("Rangering");
         writeRanksFromFile(ranksWindow);
 
         newWindow.show();
