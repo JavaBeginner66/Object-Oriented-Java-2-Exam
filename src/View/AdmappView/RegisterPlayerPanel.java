@@ -2,6 +2,7 @@ package View.AdmappView;
 
 import Controller.AdmappController.RegisterPlayerController;
 import Model.AdmappModel.Interface.Engine;
+import View.AdmappView.Observer.Interface.Callback;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +13,7 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 
 
-public class RegisterPlayerPanel extends VBox {
+public class RegisterPlayerPanel extends VBox implements Callback {
 
     public final static File playerFile = new File("deltakere");
 
@@ -39,6 +40,11 @@ public class RegisterPlayerPanel extends VBox {
 
     }
 
+    @Override
+    public void update() {
+        registerName.setText("");
+    }
+
     public void addListeners(MainFrame mainFrame, Engine engine){
         RegisterPlayerController listener = new RegisterPlayerController(mainFrame, engine, registerName);
         register.setOnAction(listener);
@@ -54,4 +60,6 @@ public class RegisterPlayerPanel extends VBox {
     public Button getRegister() {
         return register;
     }
+
+
 }

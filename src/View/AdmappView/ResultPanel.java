@@ -3,6 +3,7 @@ package View.AdmappView;
 import Controller.AdmappController.ResultPanelController;
 import Model.AdmappModel.ChessMatchInfo;
 import Model.AdmappModel.Interface.Engine;
+import View.AdmappView.Observer.Interface.Callback;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
 import java.io.*;
 
 
-public class ResultPanel extends VBox {
+public class ResultPanel extends VBox implements Callback {
 
     public final static File resultFile = new File("result");
 
@@ -28,6 +29,7 @@ public class ResultPanel extends VBox {
         componentSetup();
     }
 
+    @Override
     public void update(){
 
         if(RegisterMatchPanel.matchFile.exists()) {

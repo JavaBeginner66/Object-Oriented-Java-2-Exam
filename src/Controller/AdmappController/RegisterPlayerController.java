@@ -43,7 +43,7 @@ public class RegisterPlayerController implements EventHandler<ActionEvent> {
         try {
             toFile = new DataOutputStream(new FileOutputStream(RegisterPlayerPanel.playerFile, true));
             toFile.writeUTF(registerName.getText());
-            registerName.setText("");
+            mainFrame.getRegisterPlayerPanel().update();
         }catch (IOException e){
             e.printStackTrace();
         }finally {

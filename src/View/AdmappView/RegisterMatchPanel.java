@@ -2,6 +2,7 @@ package View.AdmappView;
 
 import Controller.AdmappController.RegisterMatchController;
 import Model.AdmappModel.Interface.Engine;
+import View.AdmappView.Observer.Interface.Callback;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -10,7 +11,7 @@ import javafx.scene.layout.VBox;
 import java.io.*;
 
 
-public class RegisterMatchPanel extends VBox {
+public class RegisterMatchPanel extends VBox implements Callback {
 
     public final static File matchFile = new File("parti");
 
@@ -62,7 +63,7 @@ public class RegisterMatchPanel extends VBox {
     }
 
 
-
+    @Override
     public void update() {
 
         DataInputStream fromFile;

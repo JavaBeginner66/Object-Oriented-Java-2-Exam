@@ -1,12 +1,22 @@
 package View.AdmappView;
 
 
+import Controller.SpillerappController.DisplayPanelController;
+import Model.AdmappModel.FinalChessObject;
 import Model.AdmappModel.Interface.Engine;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
+import java.io.*;
+import java.util.ArrayList;
 
 public class MainFrame extends GridPane {
+
+    private static final String KOPI_FIL = "sikkerhetskopi.rtf";
 
     private RegisterPlayerPanel registerPlayerPanel;
     private RegisterMatchPanel registerMatchPanel;
@@ -29,6 +39,53 @@ public class MainFrame extends GridPane {
         registerMatchPanel.addListeners(this, engine);
         registerMovePanel.addListeners(this, engine);
         resultPanel.addListeners(this, engine);
+    }
+
+    public void createCopyFile(Stage stage){
+        /* Sikkerhetskopi */
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                if(RegisterMovePanel.matchOverview.exists()){
+                    ArrayList<FinalChessObject> chessObjects = new ArrayList<>();
+                    try{
+                        FileInputStream f = new FileInputStream(RegisterMovePanel.matchOverview);
+                        try{
+                            for(;;) {
+                                try {
+                                    ObjectInputStream fromFile = new ObjectInputStream(f);
+                                    chessObjects.add((FinalChessObject)fromFile.readObject());
+                                } catch (ClassNotFoundException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+                        }catch(EOFException eof){
+                            f.close();
+                        }
+                    }catch(IOException io){
+                        io.printStackTrace();
+                    }
+                    try {
+                        PrintWriter toCopyFile = new PrintWriter(KOPI_FIL);
+
+                        toCopyFile.write("Registrerte parti: ");
+                        for (int g = 0; g < chessObjects.size(); g++) {
+                            toCopyFile.write("\n" + chessObjects.get(g).getMatchResult().getMatchInfo());
+                        }
+                        toCopyFile.write("\n Spilte parti oversikt: ");
+                        for(int i = 0; i<chessObjects.size(); i++) {
+                            toCopyFile.write("\n" + chessObjects.get(i).toString());
+                            for (int j = 1; j <= chessObjects.get(i).getMoves().size(); j++) {
+                                toCopyFile.write("\n" + j + " " +  chessObjects.get(i).getMoves().get(j));
+                            }
+                        }
+                        toCopyFile.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     /* Get methods */

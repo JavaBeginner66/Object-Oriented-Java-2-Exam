@@ -124,7 +124,6 @@ public class DisplayPanelController implements EventHandler<ActionEvent> {
                                 return o2.getValue().compareTo(o1.getValue());
                             }
                         });
-
                         for (Map.Entry<String, Double> entry : list) {
                             window.getChildren().addAll(new Label(entry.getKey() + ": " + entry.getValue()));
                         }
