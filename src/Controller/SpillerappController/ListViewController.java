@@ -22,7 +22,6 @@ public class ListViewController implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         listMoves();
-        initializeChessBoard(mainFrame);
         NavigationPanelController.moveCount = 1;
         NavigationPanelController.playerTurn = 1;
     }
@@ -30,11 +29,16 @@ public class ListViewController implements EventHandler<MouseEvent> {
     private void listMoves(){
         mainFrame.getDisplayPanel().getMovesDescription().clear();
         FinalChessObject c = (FinalChessObject)mainFrame.getDisplayPanel().getMatches().getSelectionModel().getSelectedItem();
-        TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
-        for(int i = 1; i<=moves.size(); i++){
-            mainFrame.getDisplayPanel().getMovesDescription().appendText(i + ": " + moves.get(i) +  "\n");
+        try {
+            TreeMap<Integer, MoveDescriptionObject> moves = c.getMoves();
+            for(int i = 1; i<=moves.size(); i++) {
+                mainFrame.getDisplayPanel().getMovesDescription().appendText(i + ": " + moves.get(i) + "\n");
+            }
+            initializeChessBoard(mainFrame);
+        }catch (NullPointerException e){
+            // Det her må man innrømme at var smart
+            mainFrame.getDisplayPanel().getSearchArea().requestFocus();
         }
-
     }
 
     private void initializeChessBoard(MainFrame mainFrame){
